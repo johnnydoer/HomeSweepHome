@@ -1,0 +1,8 @@
+CONNECTIONS: housing_data
+LABEL_housing_data: Housing Data
+SERVER_housing_data: postgres
+USER_housing_data: postgres
+PASSWORD_housing_data: password
+PORT_housing_data: 5432
+DATABASE_housing_data: housing
+ENGINE_housing_data: postgres@dbgate-plugin-postgres

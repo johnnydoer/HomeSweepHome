@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  housing:
+    build: ./housing
+
+  postgres:
+    # build: ./db
+    image: postgres
+    volumes:
+      # - ./db/data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
+      - ./db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    ports:
+      - 54321:5432
+    env_file:
+      - ./db/.postgres-env
+
+  dbgate:
+    image: dbgate/dbgate
+    restart: always
+    ports:
+      - 80:3000
+    volumes:
+      - dbgate-data:/root/.dbgate
+    env_file:
+      - ./db/.dbgate-env
+    depends_on:
+      - postgres
+
+volumes:
+  dbgate-data:
+  postgres-data:

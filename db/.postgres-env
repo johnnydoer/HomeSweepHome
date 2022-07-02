@@ -1,0 +1,3 @@
+POSTGRES_PASSWORD=password
+POSTGRES_DB=housing
+PGDATA=/var/lib/postgresql/data/pgdata

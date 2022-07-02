@@ -1,0 +1,1 @@
+cat headers.txt | sed "s/^/\"/" | sed "s/$/\",/" | sed "s/: /\": \"/" | sed -z "s/\"/token={\"/" | sed "$,/,/{s/,/,}/}"

@@ -1,0 +1,8460 @@
+""""""
+directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE
+
+""""""
+type Query {
+  """"""
+  _: Boolean
+
+  """"""
+  edgeSpotlightOrderTypes(count: Int): [EdgeSpotlightOrderType]
+
+  """"""
+  chimeraTypeAhead(searchQuery: SearchQueryInput!, variant: String, pageType: String): TypeAheadResponse
+
+  """"""
+  ifscDetails(ifscCode: String!): BankDetails!
+
+  """"""
+  paymentModes(orderType: String!, amount: Int, tenantInformation: TenantInformation, landlordInformation: LandlordInformation, rentTypeId: Int): [PaymentConfig!]!
+
+  """"""
+  pincodeData(pincode: String!): PincodeResponse
+
+  """"""
+  rentPayOrderDetails(entityId: Int!, orderType: String!): RentOrderResponse
+
+  """"""
+  rewardCoupons: [Rewards]
+
+  """"""
+  rentPayLastOrder: RentOrderResponse
+
+  """"""
+  rentPayMiscInfos: [FeatureOrStats]!
+
+  """"""
+  payRentOrderResponse(filters: [TransactionFilter]!): PayRentOrderResponse
+
+  """"""
+  edgeOrderDetails(filters: [TransactionFilter]!): EdgeOrderResponse
+
+  """"""
+  cities(orderType: String!): [City]!
+
+  """"""
+  edgeTestimonials(orderTypeId: Int): [Testimonial]!
+
+  """"""
+  edgeTestimonialsV2(orderType: String): edgeTestimonialsV2Response!
+
+  """"""
+  chimeraEdgeOrderTypes(source: String, pageType: String): ChimeraOrderTypesResponse
+
+  """"""
+  edgeStats: [FeatureOrStats]!
+
+  """"""
+  edgeFaq(orderTypeId: Int): edgeFaqResponse
+
+  """"""
+  tenantAdProduct(productId: Int, serviceId: Int, couponCode: String, premiumPricingExperiment: String): TenantAdProduct
+
+  """"""
+  cityListing(service: String, category: String): CityListing
+
+  """"""
+  eligbleStates(orderType: String!): [State]!
+
+  """"""
+  citiesOfState(stateId: String!, orderType: String!): [City]!
+
+  """"""
+  rentTypeOptions: [RentTypeOptions]
+
+  """"""
+  resendEsignLink(orderId: String!): JSON
+
+  """"""
+  rentAgreementStamp(state: String!): AgreementStampResponse!
+
+  """"""
+  chimeraFeedbackOptions(orderType: String!, feedbackType: Int!): [ChimeraFeedbackOptions]
+
+  """"""
+  feedbackEligible(orderType: String!, feedbackType: Int!, orderId: Int): FeedbackResponse!
+
+  """"""
+  vendors(orderType: String, cityId: String, houseTypeId: String, otherCitySelected: Boolean, packageId: String, minBudget: Int, maxBudget: Int): [vendor]!
+
+  """"""
+  vendorsV2(orderType: String, fromCityUuid: String, toCityUuid: String, houseTypeId: String, otherCitySelected: Boolean): [vendor]!
+
+  """"""
+  vendorCities(vendorId: String, orderType: String): [City]!
+
+  """"""
+  cityPackages(cityUuid: String, orderType: String): [City]!
+
+  """"""
+  chimeraHomeLoanOffer(homeLoanOfferInput: JSON!): [ChimeraBankOffer]
+
+  """"""
+  homeloanSpecialOffers: [BankSpecialOffers]
+
+  """"""
+  seoData(service: String, category: String, page: String, pageType: String, filters: JSON, hash: String, city: CityInput, trimmed: Boolean, entities: [RealEstateEntityInput], url: String, searchFromCollection: Boolean, meta: JSON): SeoData
+
+  """"""
+  staticFaq(pageType: String, service: String): StaticFaq
+
+  """"""
+  siteContent(hash: String): SiteContent
+
+  """"""
+  chimeraSearchHash(entityId: String, pageType: String, fString: String, text: String, city: CityInput, meta: JSON): ChimeraSearchHashResponse
+
+  """"""
+  sendAppLink(phone: String): Boolean
+
+  """"""
+  rewardCouponForOrder(orderId: String!): RewardCouponForOrderResponse
+
+  """"""
+  rewardOffers(fromDate: DateTime!): [OfferCoupon]
+
+  """"""
+  assignOffer(orderId: String, offerId: String): assignOfferResponse
+
+  """"""
+  homeTypes(orderTypeId: String, vendorId: String): [String]
+
+  """"""
+  whatsappOptinStatus: Boolean!
+
+  """"""
+  chimeraBulkPropertyDetails(service: String!, category: String!, propertyIdsWithType: JSON!): [Property]
+
+  """"""
+  premiumDashboardData(uuid: String): PremiumDashboardData
+
+  """"""
+  chimeraPropertiesContacted: [ContactedProperty]
+
+  """"""
+  createAustraliaPropertiesLead(apiData: JSON): JSON
+
+  """"""
+  updateAustraliaPropertiesLead(apiData: JSON): JSON
+
+  """"""
+  typeAhead(searchQuery: SearchQueryInput!, variant: String): TypeAheadResponse
+
+  """"""
+  searchHash(entityId: String, pageType: String, fString: String, text: String, city: CityInput, meta: JSON): SearchHashResponse
+
+  """"""
+  postCrfAds(leadInput: CreateLeadInput!, count: Int, meta: JSON, fetchOwnerProperties: Boolean): PostCrfAds
+
+  """"""
+  trueCallerDetails(requestId: ID!): TCLeadData
+
+  """"""
+  videoTours(filter: JSON, category: String, service: String, isEvents: Boolean): [Property]
+
+  """"""
+  cityData(service: String!, category: String!, city: EntityInput, subCategory: String): CityData
+
+  """"""
+  localityOverview(service: String!, city: EntityInput): CityData
+
+  """"""
+  allCitiesData(service: String!, category: String!): AllCitiesData
+
+  """"""
+  topProjects(city: CityInput, subCategory: String): [TopProject]
+
+  """"""
+  propertyPriceBreakup(id: ID): PropertyPaymentPlan
+
+  """"""
+  fetchSubscription: [SubscriptionResponse]
+
+  """"""
+  reverseGeocode(coords: [String]!): GeocodeResponse
+
+  """"""
+  propertyCount(hash: String!, service: String!, category: String!, pageInfo: PageInfoInput, city: CityInput, meta: JSON): PropertyCount
+
+  """"""
+  details(propertyId: Int!, propertyType: String!, fltcnt: String, config: Int, searchHash: String, multiCardId: String, meta: JSON): Property!
+
+  """"""
+  nearbyProperties(hash: String, service: String!, category: String!, ownerProperties: Boolean, meta: JSON, pageInfo: PageInfoInput): [Property!]
+
+  """"""
+  polygons(ids: [String]): [Polygon]
+
+  """"""
+  userDetails: LoginUser
+
+  """"""
+  multiUserDetails: [LoginUser]
+
+  """"""
+  checkDetail(email: String, phone: String): [CheckDetailResponse]
+
+  """"""
+  signIn(phone: TelephoneInput, password: String, otp: String, email: String): GeneralLoginResponse
+
+  """"""
+  verifyOtp(phone: TelephoneInput, otp: String): GeneralLoginResponse
+
+  """"""
+  whatsappOptOut(phone: TelephoneInput, otp: String): GeneralLoginResponse
+
+  """"""
+  socialLogin(name: String, email: String, id: ID, picture: String, accessToken: String, method: SocialLoginMethods): GeneralLoginResponse
+
+  """"""
+  fetchLocation(ip: String!): FetchLocationResponse
+
+  """"""
+  filterSuggestion(poly: String!, service: String!, category: String!): [FilterSuggestions]
+
+  """"""
+  recommendedLocalities(entity: RealEstateEntityInput!): [TypeAheadResponseList]
+
+  """"""
+  bulkPropertyDetails(service: String!, category: String!, product: String, propertyIdsWithType: JSON!): [Property]
+
+  """"""
+  bulkPropertyDetailsAllProducts(propertyIdsWithType: JSON): [Property]
+
+  """"""
+  topCitySection(service: String): [TopCitySection]
+
+  """"""
+  myTransactionsV2(paging: PageInfoInput!, filters: [TransactionFilter]): TransactionsResponse
+
+  """"""
+  validateBankDetails(accountNumber: String!, ifscCode: String!, transactionUuid: String!): JSON
+
+  """"""
+  updatePayeeCreatePayout(accountNumber: String!, ifscCode: String!, name: String!, transactionUuid: String!): JSON
+
+  """"""
+  passLeadToTeleCRM(cityUuid: String, phone: String!, profileUuid: String!, fullName: String!, email: String!): JSON
+
+  """"""
+  getCityUuidFromId(id: String!): JSON
+
+  """"""
+  convenienceCharge(couponCode: String, orderType: String, chargeName: String, platform: String): PaymentConfig!
+
+  """"""
+  availableCoupons(couponCode: String): [CouponConfig]
+
+  """"""
+  myTransactions(entityId: ID): [Transactions]
+
+  """"""
+  propertiesContacted(product: String): [ContactedProperty]
+
+  """"""
+  topSocieties(entity: RealEstateEntityInput!): [Society!]
+
+  """"""
+  getFavorites(uuid: String): Favorites
+
+  """"""
+  decryptedUserInfo(encryptedInfo: String): User
+
+  """"""
+  feedbackForm(source: String!, optionId: Int): FeedbackForm
+
+  """"""
+  feedbackFormData(source: String!, userId: String!, task: String!): [Int]
+
+  """"""
+  userFeedbackRatingQuestions(entityType: String): [FeedbackRatingDetails]
+
+  """"""
+  userFeedbackRating(entityIds: [Int], entityType: String, page: Int, size: Int, entityId: [String], ratings: [Int], ratingStatus: [Int], sortBy: String, sortDirection: String, testimonialStatus: [Int], userProfileUUID: String!): [FeedbackRating]
+
+  """"""
+  userFeedbackRatingCategories: FeedbackRatingDetails
+
+  """"""
+  recentlyViewedProperties(gaId: String, page: Int, limit: Int, service: String): recentProperties
+
+  """"""
+  isTMUser(cityUuid: String): Boolean
+
+  """"""
+  edgeOrderTypes(source: String, pageType: String): orderTypesResponse
+
+  """"""
+  recommendedPaidProjects(hash: String!, service: String!, category: String!, pageInfo: PageInfoInput, city: CityInput, meta: JSON): SearchResults
+
+  """"""
+  reportErrorTypes(service: String!, category: String!, sellerType: String): [ReportErrorType]
+
+  """"""
+  similarProperties(propertyId: Int!, service: String!, propertyType: String, propertyStatus: String, category: String, page: Int, variants: [String!], count: Int, meta: JSON): [SimilarProperties]
+
+  """"""
+  dedicatedSimilarProperties(propertyId: Int!, propertyType: String, propertyStatus: String, count: Int, service: String, category: String): SimilarProperties
+
+  """"""
+  bannerData(service: String): JSON
+
+  """"""
+  collectionInfo(service: String, bbId: String, poly: String): response
+
+  """"""
+  feedbackOptions(orderType: String!, feedbackType: Int!): [FeedbackOptionsEdge]
+
+  """"""
+  checkPageData: Boolean
+
+  """"""
+  previousNextListing(hash: String, service: String!, category: String!, pageInfo: PageInfoInput, city: CityInput, meta: JSON): PreviousNextListing
+
+  """"""
+  userLookAlikeProperties(listingId: String, propertyType: String): [Property]
+
+  """"""
+  propertyDetails(idArray: [Int!], propertyType: String!, meta: JSON): Details
+
+  """"""
+  getEventCities: [EventCities]
+
+  """"""
+  projectTrends(projectIds: String!, service: String): [ProjectTrend]
+
+  """"""
+  leadSms(leadId: Int!): GeneralResponse
+
+  """"""
+  entityRatings(entityId: String!, entityType: String!): RatingData
+
+  """"""
+  multiEntityRatings(entityIds: [String], entityType: String!): [RatingData]
+
+  """"""
+  reviews(entityId: String!, entityType: String!, page: Int!, size: Int!, sortDirection: String, sortBy: String, ratings: Int): Reviews
+
+  """"""
+  serviceHealthCheck(remoteEndpoint: String, zeusEndPoint: String): ServiceHealthStatus
+
+  """"""
+  highDemandProjects(cityId: String, polygonId: String, projectId: Int, page: Int): JSON
+
+  """"""
+  dedicatedFaqs(propertyId: Int!, propertyType: String!): Faqs
+
+  """"""
+  cityPopularProperties(cityId: String, serviceType: String): [Property]
+
+  """"""
+  inCaseMissedProperties(cityUuid: String, product: String, gaId: String): [MissedProperty]
+
+  """"""
+  decryptedPropertyInfo(encryptedInfo: String): DecryptedInfo
+
+  """"""
+  activityPropertyCount(loginAuthToken: String): ActivityPropertyResponse
+
+  """"""
+  seo(service: String, category: String, page: String, pageType: String, filters: JSON, hash: String, city: CityInput, trimmed: Boolean, entities: [RealEstateEntityInput], url: String, searchFromCollection: Boolean, quickLink: String, landing: String, passedQuery: JSON): Seo
+
+  """"""
+  urlList(service: String, slug: String, category: String, type: String, pageInfo: PageInfoInput, city: CityInput, hash: String): UrlListResponse
+
+  """"""
+  discussionList(tags: JSON, pageInfo: PageInfoInput): [IrefPost]
+
+  """"""
+  postDetail(postId: ID, pageInfo: PageInfoInput): [IrefPost]
+
+  """"""
+  builders(hash: String!, pageInfo: PageInfoInput, type: String, meta: JSON, query: String): BuildersData
+
+  """"""
+  topBuilders(hash: String!, type: String): BuildersData
+
+  """"""
+  nearByPoly(polygon: RealEstateEntityInput!): [NearByPoly]
+
+  """"""
+  homeloanFaqs: JSON
+
+  """"""
+  homeLoanOffer: [BankOffer]
+
+  """"""
+  homeloanFaqAnswer(id: Int!): HomeloanFaqAnswer
+
+  """"""
+  priceTrends(poly: String!, pageInfo: PageInfoInput = {page: 1, size: 20}, service: String): PriceTrends
+
+  """"""
+  parentPolygons(poly: String!): [NearByPoly]
+
+  """"""
+  priceTrendsV2(poly: String!, pageInfo: PageInfoInput = {page: 1, size: 20}, service: String): PriceTrendsV2
+
+  """"""
+  priceTrend(poly: String!, service: String, propertyTypeIds: [Int] = [1, 2, 6, 15, 38]): JSON
+
+  """"""
+  priceTrendV2(poly: String!, service: String!): JSON
+
+  """"""
+  homeLoanOffers(cityId: ID, propertyValue: Float): [HomeLoanOffer]
+
+  """"""
+  homeLoansBank(bank: String): HomeLoansBank
+
+  """"""
+  homeLoansBankHighlights(bank: String, page: String): JSON
+
+  """"""
+  faqInfo(hash: String, pageType: String!, service: String, category: String, fromUnit: String, toUnit: String, identifier: String): FaqData
+
+  """"""
+  popularSearches(poly: String!, service: String!): [SeoLink]
+
+  """"""
+  qna(entities: [RealEstateEntityInput!]!, pageInfo: PageInfoInput): QnAData
+
+  """"""
+  questionTags: [QuestionTag]
+
+  """"""
+  getQuestion(questionId: Int): QuestionData
+
+  """"""
+  states: [StateCountry]
+
+  """"""
+  unitConversions: Conversion
+
+  """"""
+  aboutContent: JSON
+
+  """"""
+  trendingSearches: [SeoLink]
+
+  """"""
+  getEstablishments(hash: String!, pageInfo: PageInfoInput, category: String): EstablishmentResponse
+
+  """"""
+  getEstablishmentTypes(poly: String!): [EstablishmentCategory]
+
+  """"""
+  getPropertyLinks(poly: String!, pageType: String!): PropertyLinksResponse
+
+  """"""
+  localityGlob(locality: RealEstateEntityInput!): LocalityGlob
+
+  """"""
+  newsResponse: NewsResponse
+
+  """"""
+  userCategories: [UserCategories]
+
+  """"""
+  entityTypes: EntityTypes
+
+  """"""
+  projectDetails(propertyId: Int): ProjectDetails
+
+  """"""
+  bankUrlList: [BankUrlList]
+
+  """"""
+  recommendedProperties(service: String!, category: String, count: Int, userId: ID, cityId: String, visitorId: String): [Property]
+
+  """"""
+  recommendedProjects(service: String!, category: String): RecommendedProject
+
+  """"""
+  recentSearches(service: String!, category: String): [RecentSearch]
+
+  """"""
+  nearbyLocalities(service: String!, category: String, entities: [RealEstateEntityInput!]): [NearbyLocalities]
+
+  """"""
+  popularLocalities(service: String!, category: String, city: CityInput!): [NearbyLocalities]
+
+  """"""
+  localityInfo(locality: RealEstateEntityInput, service: String, category: String): LocalityInfo
+
+  """"""
+  nearbyLandmarks(center: [String], radius: Int, entities: [RealEstateEntityInput!]): [ExploreEstablishments]
+
+  """"""
+  latestProperties(service: String!, category: String, poly: String, itemCount: Int): [Property]
+
+  """"""
+  newProperties(hash: String!, service: String!, category: String, itemCount: Int, addedIn: Int): [Property]
+
+  """"""
+  dealsData(city: CityInput, coords: [String]): DealsData
+
+  """"""
+  dealsDataV2(cityUuid: String, product: String, gaId: String): DealsData
+
+  """"""
+  seoCanonicals(product: String!, poly: String!): [SeoCanonical]
+
+  """"""
+  canonicalUrls(entities: JSON, pageTypes: JSON, service: String): CanonicalUrls
+
+  """"""
+  uuidDetails(url: String): uuidResponse
+
+  """"""
+  polygonAncestors(uuid: String): [AncestorsResponse]
+
+  """"""
+  pincodeCityList(uuid: String, service_type: String, size: Int, types: String, offset: Int, hasLocality: Boolean, cityQuery: Boolean): [CityListResponse]
+
+  """"""
+  localityDetails(uuid: String): LocalityDetailsResponse
+
+  """"""
+  ifscPageData(bankId: Int, cityId: Int, stateId: Int, branchId: Int, ifscCode: String, canonical: String): JSON
+
+  """"""
+  banksList: JSON
+
+  """"""
+  stateList(bankId: Int): JSON
+
+  """"""
+  cityList(bankId: Int, stateId: Int): JSON
+
+  """"""
+  branchList(bankId: Int, cityId: Int): JSON
+
+  """"""
+  branchPageCanonical(ifscCode: String): JSON
+
+  """"""
+  allianceDetails(placeholderId: Int, poly: String, slotId: Int, domain: Int, limit: Int, source: String, service: String): Alliance!
+
+  """"""
+  documentDetail(type: String): String
+
+  """"""
+  falconDeveloper(id: ID): FalconDeveloperInfo
+
+  """"""
+  eventDetail(id: ID): Event
+
+  """"""
+  silverProjects(params: JSON): SilverProjects
+
+  """"""
+  eventBrokers(params: JSON): EventBrokers
+
+  """"""
+  videoChatUrl(leadInput: CreateLeadInput): VideoChatUrlResponse
+
+  """"""
+  videoSellerAvailable(meetingId: String, isBuyer: Boolean): VideoSellerAvailableResponse
+
+  """"""
+  videoAttendeeStatus(meetingId: String, isBuyer: Boolean, status: String): VideoAttendeeStatusResponse
+
+  """"""
+  videoMeeting(meetingId: String, attendeeId: String): VideoMeetingResponse
+
+  """"""
+  liveVideoTours(service: String!, category: String!, poly: String!): [Property]
+
+  """"""
+  fixedAdSlot(entities: [RealEstateEntityInput!], filters: JSON, meta: JSON, count: Int, service: String, category: String): [Property]
+
+  """"""
+  submitPartnerCrf(email: String, phone: String!, city: String!, name: String!, text: String!, profileType: String!, locality: String!): PartnerCrfResponse
+
+  """"""
+  ownerPackagePricing: [OwnerPackagePricing]
+
+  """"""
+  micrositeDetail(projectId: Int!): Microsite
+
+  """"""
+  certifiedAgents(city: CityInput, hash: String, service: String!, category: String!, meta: JSON): CertifiedAgents
+
+  """"""
+  videoTourSignature(meetingNumber: String): VideoTourSignature
+
+  """"""
+  projectSuggestions(city: CityInput!, minPrice: Float, maxPrice: Float, resultsPerPage: Int, type: String): [Property]!
+
+  """"""
+  coLivingPartners(key: ID, city: CityInput): CoLivingMicrosite
+
+  """"""
+  newsPosts(params: [NewsPostInput]): [NewsSnippet]
+
+  """"""
+  articleDetails(id: Int): ArticleDetails
+
+  """"""
+  weeklyPoll: JSON
+
+  """"""
+  popularNewsPosts: JSON
+
+  """"""
+  searchResults(hash: String!, service: String!, category: String!, pageInfo: PageInfoInput, city: CityInput, meta: JSON, fltcnt: String): SearchResults
+
+  """"""
+  agentDetails(id: ID): User
+
+  """"""
+  billboardsData(hash: String!, service: String!, category: String!, city: CityInput): BillboardsData
+
+  """"""
+  polygonInfo(uuid: String): Polygon
+}
+
+""""""
+type EdgeSpotlightOrderType {
+  """"""
+  id: Int
+
+  """"""
+  serviceTypeId: Int
+
+  """"""
+  orderType: String
+
+  """"""
+  displayName: String
+
+  """"""
+  description: String
+
+  """"""
+  serviceUrl: String
+
+  """"""
+  status: String
+
+  """"""
+  tag: String
+
+  """"""
+  benefits: [FeatureOrStats]
+}
+
+""""""
+type FeatureOrStats {
+  """"""
+  id: String
+
+  """"""
+  icon: String
+
+  """"""
+  stateId: String
+
+  """"""
+  label: String
+
+  """"""
+  description: String
+
+  """"""
+  type: String
+
+  """"""
+  meta: JSON
+
+  """"""
+  position: Int
+
+  """"""
+  status: ID
+
+  """"""
+  action: TransactionAction
+
+  """"""
+  subSteps: [FeatureOrStats]
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+""""""
+type TransactionAction {
+  """"""
+  url: String
+
+  """"""
+  label: String
+
+  """"""
+  id: ID
+
+  """"""
+  isPrimary: Boolean
+
+  """"""
+  trackingKey: String
+
+  """"""
+  iconId: String
+}
+
+""""""
+input SearchQueryInput {
+  """"""
+  name: String!
+
+  """"""
+  rows: Int
+
+  """"""
+  service: String!
+
+  """"""
+  category: String!
+
+  """"""
+  city: CityInput
+
+  """"""
+  excludeEntities: [TypeAheadRequest]
+}
+
+""""""
+input CityInput {
+  """"""
+  name: String
+
+  """"""
+  id: String
+
+  """"""
+  cityId: String
+
+  """"""
+  url: String
+
+  """"""
+  cityClassification: String
+
+  """"""
+  image: String
+
+  """"""
+  isTierTwo: Boolean
+
+  """"""
+  products: [String]
+}
+
+""""""
+input TypeAheadRequest {
+  """"""
+  id: ID!
+
+  """"""
+  name: String
+
+  """"""
+  displayType: String
+
+  """"""
+  type: SuperType
+
+  """"""
+  subType: String
+
+  """"""
+  url: String
+
+  """"""
+  center: [String]
+
+  """"""
+  filters: JSON
+}
+
+""""""
+enum SuperType {
+  """"""
+  landmark
+
+  """"""
+  polygon
+
+  """"""
+  developer
+
+  """"""
+  project
+
+  """"""
+  building
+
+  """"""
+  agent
+}
+
+""""""
+type TypeAheadResponse {
+  """"""
+  results: [TypeAheadResponseList!]
+
+  """"""
+  defaultUrl: String
+
+  """"""
+  isCrossCitySearch: Boolean!
+}
+
+""""""
+type TypeAheadResponseList {
+  """"""
+  id: ID!
+
+  """"""
+  name: String!
+
+  """"""
+  displayType: String!
+
+  """"""
+  type: SuperType!
+
+  """"""
+  subType: String!
+
+  """"""
+  url: String
+
+  """"""
+  center: [String]
+
+  """"""
+  filters: JSON
+
+  """"""
+  localityName: String
+}
+
+""""""
+type BankDetails {
+  """"""
+  name: String
+
+  """"""
+  branchName: String
+
+  """"""
+  address: String
+
+  """"""
+  ifscCode: String
+}
+
+""""""
+input TenantInformation {
+  """"""
+  name: String
+
+  """"""
+  email: String
+
+  """"""
+  contactNumber: String
+
+  """"""
+  profile_uuid: String
+}
+
+""""""
+input LandlordInformation {
+  """"""
+  name: String
+
+  """"""
+  email: String
+
+  """"""
+  contactNumber: String
+
+  """"""
+  accountInformation: LandlordAccountInfo
+
+  """"""
+  pan_number: String
+}
+
+""""""
+input LandlordAccountInfo {
+  """"""
+  accountNumber: String
+
+  """"""
+  ifscCode: String
+
+  """"""
+  upi: String
+}
+
+""""""
+type PaymentConfig {
+  """"""
+  id: ID
+
+  """"""
+  code: String
+
+  """"""
+  name: String
+
+  """"""
+  promotionText: String
+
+  """"""
+  totalAmount: String
+
+  """"""
+  type: String
+
+  """"""
+  charge: Float
+
+  """"""
+  absoluteValue: Float
+
+  """"""
+  couponCodeDiscount: Float
+
+  """"""
+  nonRent: Boolean
+}
+
+""""""
+type PincodeResponse {
+  """"""
+  state: String
+
+  """"""
+  city: String
+}
+
+""""""
+type RentOrderResponse {
+  """"""
+  tenantInformation: EdgeUser!
+
+  """"""
+  landlordInformation: EdgeUser!
+
+  """"""
+  propertyDetails: PropertyInformationV2!
+
+  """"""
+  rentInformation: RentInformation!
+
+  """"""
+  transactionDetails: TransactionDetails!
+
+  """"""
+  payoutFailureCount: Int
+}
+
+""""""
+type EdgeUser {
+  """"""
+  name: String!
+
+  """"""
+  email: String
+
+  """"""
+  phone: String!
+
+  """"""
+  accountInformation: AccountInformation
+
+  """"""
+  id: ID
+
+  """"""
+  address: String
+
+  """"""
+  pincode: String
+
+  """"""
+  parentName: String
+
+  """"""
+  optWhatsapp: Boolean
+
+  """"""
+  entityType: String
+
+  """"""
+  state: State
+
+  """"""
+  city: City
+
+  """"""
+  rentTypeId: Int
+
+  """"""
+  hasSigned: Boolean
+
+  """"""
+  rentMonth: Int
+}
+
+""""""
+type AccountInformation {
+  """"""
+  accountNumber: String
+
+  """"""
+  upi: UpiDetails
+
+  """"""
+  panNumber: String
+
+  """"""
+  bankDetails: BankDetails
+}
+
+""""""
+type UpiDetails {
+  """"""
+  customerName: String
+
+  """"""
+  upi: String
+}
+
+""""""
+type State {
+  """"""
+  name: String!
+
+  """"""
+  id: ID
+
+  """"""
+  code: String
+}
+
+""""""
+type City {
+  """"""
+  name: String!
+
+  """"""
+  id: String
+
+  """"""
+  cityId: String
+
+  """"""
+  url: String
+
+  """"""
+  cityClassification: String
+
+  """"""
+  image: String
+
+  """"""
+  state: String
+
+  """"""
+  isTierTwo: Boolean
+
+  """"""
+  products: [String]
+}
+
+""""""
+type PropertyInformationV2 {
+  """"""
+  propertyAddress: String
+
+  """"""
+  pincode: String
+
+  """"""
+  state: String
+
+  """"""
+  city: String
+
+  """"""
+  propertyTypeId: Int
+
+  """"""
+  bhkConfig: Int
+
+  """"""
+  entity: RealEstateEntity
+
+  """"""
+  address: EdgePropertyAddress
+}
+
+""""""
+type RealEstateEntity {
+  """"""
+  id: ID
+
+  """"""
+  name: String
+
+  """"""
+  type: String
+
+  """"""
+  subType: String
+
+  """"""
+  displayType: String
+
+  """"""
+  image: String
+
+  """"""
+  center: [String]
+
+  """"""
+  images: JSON
+
+  """"""
+  videoUrl: [String]
+}
+
+""""""
+type EdgePropertyAddress {
+  """"""
+  floorNumber: Int
+
+  """"""
+  flatNumber: String
+
+  """"""
+  buildingName: String
+
+  """"""
+  locality: RealEstateEntity
+
+  """"""
+  pincode: String
+
+  """"""
+  city: City
+
+  """"""
+  state: State
+}
+
+""""""
+type RentInformation {
+  """"""
+  paymentModeId: Int
+
+  """"""
+  amount: Float!
+
+  """"""
+  rentMonth: Int
+
+  """"""
+  convenienceCharge: PaymentConfig!
+
+  """"""
+  rentTypeId: Int
+}
+
+""""""
+type TransactionDetails {
+  """"""
+  receiptUrl: String
+
+  """"""
+  transactionId: String!
+
+  """"""
+  status: String!
+
+  """"""
+  rentAgreementUrl: String
+
+  """"""
+  rentAgreementEsignUrl: String
+
+  """"""
+  steps: [FeatureOrStats]
+
+  """"""
+  createdBy: String
+
+  """"""
+  orderId: Int
+}
+
+""""""
+type Rewards {
+  """"""
+  type: String!
+
+  """"""
+  coupons: [Coupon]!
+}
+
+""""""
+type Coupon {
+  """"""
+  brandName: String!
+
+  """"""
+  brandLogo: String!
+
+  """"""
+  title: String!
+
+  """"""
+  subtitle: String
+
+  """"""
+  date: DateTime!
+
+  """"""
+  couponCode: String!
+
+  """"""
+  aestheticImage: String
+
+  """"""
+  howItWorks: [String]
+
+  """"""
+  details: [String]
+
+  """"""
+  id: Int
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+""""""
+input TransactionFilter {
+  """"""
+  key: String
+
+  """"""
+  value: String
+
+  """"""
+  type: String
+}
+
+""""""
+type PayRentOrderResponse {
+  """"""
+  tenantInformation: EdgeUser
+
+  """"""
+  landlordInformation: EdgeUser
+
+  """"""
+  propertyDetails: PropertyInformation
+
+  """"""
+  rentInformation: RentInformation
+
+  """"""
+  transactionDetails: TransactionDetails
+
+  """"""
+  contractInformation: ContractInformation
+
+  """"""
+  createdBy: String
+}
+
+""""""
+type PropertyInformation {
+  """"""
+  entity: RealEstateEntity!
+
+  """"""
+  propertyTypeId: Int
+
+  """"""
+  bhkConfig: Int
+
+  """"""
+  address: EdgePropertyAddress
+
+  """"""
+  pincode: String
+}
+
+""""""
+type ContractInformation {
+  """"""
+  agreementStartDate: DateTime
+
+  """"""
+  monthlyRent: Float
+
+  """"""
+  addChargesIncluded: Boolean
+
+  """"""
+  rentPaymentDay: Int
+
+  """"""
+  securityAmount: Float
+
+  """"""
+  noticePeriod: Int
+
+  """"""
+  annualIncrement: Float
+
+  """"""
+  convenienceFee: Float
+}
+
+""""""
+type EdgeOrderResponse {
+  """"""
+  basicInformation: EdgeUser
+
+  """"""
+  tenantInformation: [EdgeUser]
+
+  """"""
+  landlordInformation: [EdgeUser]
+
+  """"""
+  propertyDetails: PropertyInformation
+
+  """"""
+  hardCopyDetails: HardCopy
+
+  """"""
+  rentInformation: RentInformation
+
+  """"""
+  transactionDetails: TransactionDetails
+
+  """"""
+  contractInformation: ContractInformation
+
+  """"""
+  itemList: AnnexureInformation
+
+  """"""
+  createdBy: String
+}
+
+""""""
+type HardCopy {
+  """"""
+  name: String
+
+  """"""
+  address: String
+
+  """"""
+  pincode: String
+
+  """"""
+  phone: String
+
+  """"""
+  deliveryPartnerName: String
+
+  """"""
+  trackingId: String
+
+  """"""
+  status: String
+
+  """"""
+  quantity: Int
+}
+
+""""""
+type AnnexureInformation {
+  """"""
+  list: [AnnexureList]
+}
+
+""""""
+type AnnexureList {
+  """"""
+  name: String
+
+  """"""
+  quantity: Int
+}
+
+""""""
+type Testimonial {
+  """"""
+  name: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  image: String
+
+  """"""
+  content: String
+
+  """"""
+  city: String
+
+  """"""
+  ratings: String
+
+  """"""
+  type: Int
+}
+
+""""""
+type edgeTestimonialsV2Response {
+  """"""
+  HOUSING_RENT: [Testimonial]
+
+  """"""
+  RENT_AGREEMENT: [Testimonial]
+}
+
+""""""
+type ChimeraOrderTypesResponse {
+  """"""
+  ownerOrders: [ChimeraEdgeOrderType]
+
+  """"""
+  tenantOrders: [ChimeraEdgeOrderType]
+}
+
+""""""
+type ChimeraEdgeOrderType {
+  """"""
+  orderId: Int
+
+  """"""
+  serviceTypeId: Int
+
+  """"""
+  orderType: String
+
+  """"""
+  description: String
+
+  """"""
+  displayName: String
+
+  """"""
+  status: Boolean
+
+  """"""
+  tag: String
+
+  """"""
+  url: String
+
+  """"""
+  benefits: [FeatureOrStats]
+}
+
+""""""
+type edgeFaqResponse {
+  """"""
+  HOUSING_RENT: [Faq]
+
+  """"""
+  RENT_AGREEMENT: [Faq]
+
+  """"""
+  HOME_SERVICES: [Faq]
+
+  """"""
+  PACKERS_AND_MOVERS: [Faq]
+
+  """"""
+  TENANT_MONETIZATION: [Faq]
+}
+
+""""""
+type Faq {
+  """"""
+  q: String!
+
+  """"""
+  a: String!
+}
+
+""""""
+type TenantAdProduct {
+  """"""
+  tenantPackages: [PackagesData]
+
+  """"""
+  couponData: [HPCouponData]
+}
+
+""""""
+type PackagesData {
+  """"""
+  benefits: [JSON]
+
+  """"""
+  displayPrice: Int
+
+  """"""
+  ownerContactLimit: Int
+
+  """"""
+  allowedOwnerLead: Int
+
+  """"""
+  offeredPrice: Int
+
+  """"""
+  productId: Int
+
+  """"""
+  fallbackProductId: Int
+
+  """"""
+  packageName: String
+
+  """"""
+  experimentStatus: String
+
+  """"""
+  isPopular: Boolean
+}
+
+""""""
+type HPCouponData {
+  """"""
+  offerType: String
+
+  """"""
+  placeholders: [PlaceholderConf]
+
+  """"""
+  coupons: [CouponCodeConf]
+
+  """"""
+  validFrom: Float
+
+  """"""
+  validTo: Float
+}
+
+""""""
+type PlaceholderConf {
+  """"""
+  key: String
+
+  """"""
+  value: String
+
+  """"""
+  keyType: String
+}
+
+""""""
+type CouponCodeConf {
+  """"""
+  id: Int
+
+  """"""
+  code: String
+
+  """"""
+  offerId: Int
+
+  """"""
+  typeId: Int
+
+  """"""
+  couponStatus: String
+
+  """"""
+  metaData: CouponCodeMetaData
+}
+
+""""""
+type CouponCodeMetaData {
+  """"""
+  entityId: Int
+
+  """"""
+  entityType: String
+
+  """"""
+  value: Float
+
+  """"""
+  valueMetric: String
+}
+
+""""""
+type CityListing {
+  """"""
+  topCities: [City]
+
+  """"""
+  otherCities: [City]
+}
+
+""""""
+type RentTypeOptions {
+  """"""
+  id: Int!
+
+  """"""
+  rentType: String
+
+  """"""
+  min: Int
+
+  """"""
+  max: Int
+}
+
+""""""
+type AgreementStampResponse {
+  """"""
+  url: String!
+}
+
+""""""
+type ChimeraFeedbackOptions {
+  """"""
+  id: Int
+
+  """"""
+  name: String
+
+  """"""
+  type: String
+
+  """"""
+  subOptions: [FeedbackSubOptions]
+}
+
+""""""
+type FeedbackSubOptions {
+  """"""
+  id: Int
+
+  """"""
+  name: String
+}
+
+""""""
+type FeedbackResponse {
+  """"""
+  status: Boolean
+}
+
+""""""
+type vendor {
+  """"""
+  name: String
+
+  """"""
+  id: String
+}
+
+""""""
+type ChimeraBankOffer {
+  """"""
+  bank: String!
+
+  """"""
+  id: ID!
+
+  """"""
+  url: String
+
+  """"""
+  uniqueId: ID!
+
+  """"""
+  logo: String
+
+  """"""
+  interestRates: [Interest!]
+
+  """"""
+  name: String!
+
+  """"""
+  processingFee: Interest
+
+  """"""
+  tenures: JSON
+
+  """"""
+  isFeatured: Boolean
+
+  """"""
+  promotionText: String
+
+  """"""
+  ctaText: String
+
+  """"""
+  ctaLink: String
+
+  """"""
+  isDefaultBank: Boolean
+
+  """"""
+  features: [String]
+
+  """"""
+  featureDescription: String
+}
+
+""""""
+type Interest {
+  """"""
+  rate: Float!
+
+  """"""
+  type: String
+}
+
+""""""
+type BankSpecialOffers {
+  """"""
+  bank: String!
+
+  """"""
+  id: ID!
+
+  """"""
+  url: String
+
+  """"""
+  uniqueId: ID!
+
+  """"""
+  logo: String
+
+  """"""
+  name: String
+
+  """"""
+  processingFee: Interest
+
+  """"""
+  interestRates: [Interest!]
+
+  """"""
+  isFeatured: Boolean
+
+  """"""
+  promotionText: String
+
+  """"""
+  ctaText: String
+
+  """"""
+  ctaLink: String
+
+  """"""
+  isDefaultBank: Boolean
+
+  """"""
+  description: String
+}
+
+""""""
+input RealEstateEntityInput {
+  """"""
+  id: ID
+
+  """"""
+  name: String
+
+  """"""
+  type: String
+
+  """"""
+  subType: String
+
+  """"""
+  displayType: String
+
+  """"""
+  image: String
+
+  """"""
+  center: [String]
+}
+
+""""""
+type SeoData {
+  """"""
+  structuredData: JSON
+
+  """"""
+  noIndex: Boolean
+
+  """"""
+  title: String
+
+  """"""
+  unitConversionLinks: [SeoLink]
+
+  """"""
+  htmlSitemapLinks: [SeoLink]
+
+  """"""
+  popularSearchesNearby: [SeoLink]
+
+  """"""
+  breadCrumbs: [SeoLink]
+
+  """"""
+  description: String
+
+  """"""
+  canonical: String
+
+  """"""
+  imageUrl: String
+
+  """"""
+  keywords: [String]
+
+  """"""
+  sideMenu: JSON
+
+  """"""
+  breadCrumbsMoreLinks: JSON
+
+  """"""
+  moreLinksPresent: Boolean
+
+  """"""
+  suggestedLinks: JSON
+
+  """"""
+  footerLinks: JSON
+
+  """"""
+  h1: String
+
+  """"""
+  pageType: String
+
+  """"""
+  contentSnippet: String
+
+  """"""
+  h2: String
+
+  """"""
+  entities: [RealEstateEntity]
+
+  """"""
+  redirectUrl: String
+
+  """"""
+  statusCode: Int
+
+  """"""
+  urlLabel: String
+
+  """"""
+  polygonName: String
+}
+
+""""""
+type SeoLink {
+  """"""
+  url: String
+
+  """"""
+  label: String!
+}
+
+""""""
+type StaticFaq {
+  """"""
+  faq: [Faq]
+
+  """"""
+  structuredData: JSON
+}
+
+""""""
+type SiteContent {
+  """"""
+  details: JSON
+
+  """"""
+  statusCode: Int
+}
+
+""""""
+type ChimeraSearchHashResponse {
+  """"""
+  hash: String
+
+  """"""
+  redirectUrl: String
+
+  """"""
+  statusCode: Int
+
+  """"""
+  id: String
+}
+
+""""""
+type RewardCouponForOrderResponse {
+  """"""
+  couponAssigned: Boolean!
+
+  """"""
+  coupon: Coupon
+}
+
+""""""
+type OfferCoupon {
+  """"""
+  brandName: String!
+
+  """"""
+  brandLogo: String!
+
+  """"""
+  title: String!
+
+  """"""
+  subtitle: String
+
+  """"""
+  date: DateTime!
+
+  """"""
+  aestheticImage: String
+
+  """"""
+  howItWorks: [String]
+
+  """"""
+  details: [String]
+
+  """"""
+  id: Int!
+}
+
+""""""
+type assignOfferResponse {
+  """"""
+  assigned: Boolean
+
+  """"""
+  couponCode: String
+}
+
+""""""
+type Property {
+  """"""
+  features: [FeatureOrStats]
+
+  """"""
+  details: PropertyDetails
+
+  """"""
+  galleryTitle: String
+
+  """"""
+  coverImage: PropertyImage
+
+  """"""
+  hasAutoVideo: Boolean
+
+  """"""
+  imageCount: Int
+
+  """"""
+  description: PropertyDescription
+
+  """"""
+  title: String!
+
+  """"""
+  filterTitle: String
+
+  """"""
+  expTitle: String
+
+  """"""
+  propertyType: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  tags: [String!]
+
+  """"""
+  displayPrice: DisplayPriceConfig
+
+  """"""
+  address: PropertyAddress
+
+  """"""
+  keyPoints: [String]
+
+  """"""
+  highlights: [String]
+
+  """"""
+  sellers: [User]
+
+  """"""
+  insights: [Insight]
+
+  """"""
+  videoTour: VideoTour
+
+  """"""
+  project: User
+
+  """"""
+  sellerCount: Int
+
+  """"""
+  entity: RealEstateEntity
+
+  """"""
+  carpetArea: Area
+
+  """"""
+  builtUpArea: Area
+
+  """"""
+  showPerSqftRate: Boolean
+
+  """"""
+  videoConnectAvailable: Boolean
+
+  """"""
+  furnishingType: String
+
+  """"""
+  url: String!
+
+  """"""
+  coords: [String!]
+
+  """"""
+  promotions: [String]
+
+  """"""
+  postedDate: DateTime
+
+  """"""
+  listingId: ID
+
+  """"""
+  originalListingId: ID
+
+  """"""
+  label: String
+
+  """"""
+  badge: String
+
+  """"""
+  isMostContacted: Boolean
+
+  """"""
+  isRecentlyAdded: Boolean
+
+  """"""
+  isActiveProperty: Boolean
+
+  """"""
+  isUc: Boolean
+
+  """"""
+  addedOnDate: String
+
+  """"""
+  addedOnText: String
+
+  """"""
+  meta: JSON
+
+  """"""
+  tracking: JSON
+
+  """"""
+  updatedAt: DateTime
+
+  """"""
+  socialUrgency: SocialUrgency
+
+  """"""
+  socialContext: SocialUrgency
+
+  """"""
+  structuredData: JSON
+
+  """"""
+  emi: String
+
+  """"""
+  digitour: Digitour
+
+  """"""
+  inventoryCanonicalUrl: String
+
+  """"""
+  brands: [User]
+
+  """"""
+  showDeveloper: Boolean
+
+  """"""
+  minDistanceLocality: DistFromLocality
+
+  """"""
+  certifiedDetails: CertifiedDetails
+
+  """"""
+  micrositeRedirectionURL: String
+
+  """"""
+  eventVideoURL: String
+
+  """"""
+  eventVideoThumbnailURL: String
+
+  """"""
+  eventBoothImagePreviewURL: String
+
+  """"""
+  eventBoothURL: String
+
+  """"""
+  isAuctionFlat: Boolean
+
+  """"""
+  photoUnderReview: Boolean
+
+  """"""
+  developerLogo: String
+
+  """"""
+  spotlightPhotoUrl: String
+
+  """"""
+  propertyTags: [String]
+
+  """"""
+  roomType: String
+
+  """"""
+  isMyGateCertified: Boolean
+
+  """"""
+  propertyVideoUrl: String
+
+  """"""
+  propertyVideoThumbnailUrl: String
+
+  """"""
+  polygonsHash: JSON
+
+  """"""
+  streetInfo: String
+
+  """"""
+  landmark: String
+
+  """"""
+  priceOnRequest: Boolean
+
+  """"""
+  clubhouse: JSON
+
+  """"""
+  thumbImageUrl: String
+
+  """"""
+  inventoryAmenities: JSON
+
+  """"""
+  propertyInformation: JSON
+
+  """"""
+  videoKey: String
+
+  """"""
+  possessionDate: String
+
+  """"""
+  initiationDateSeconds: DateTime
+
+  """"""
+  addedOn: String
+
+  """"""
+  displayNeighbourhood: [String]
+
+  """"""
+  polygonDetails: JSON
+
+  """"""
+  price: Float
+
+  """"""
+  status: String
+
+  """"""
+  developerInformation: JSON
+
+  """"""
+  name: String
+
+  """"""
+  minSelectedArea: Int
+
+  """"""
+  unitOfArea: String
+
+  """"""
+  addressDetails: [String]
+
+  """"""
+  selectedAreaInUnits: Int
+
+  """"""
+  leaseType: String
+
+  """"""
+  serviceType: String
+
+  """"""
+  isBrokerageChargeable: Boolean
+
+  """"""
+  roi: FeatureOrStats
+}
+
+""""""
+type PropertyDetails {
+  """"""
+  detailedTitle: String
+
+  """"""
+  overviewPoints: [FeatureOrStats]
+
+  """"""
+  legalApprovals: [String!]
+
+  """"""
+  images: [PropertyImages]
+
+  """"""
+  config: Inventory
+
+  """"""
+  amenities: [AdditionalAmenities]
+
+  """"""
+  furnishings: [AdditionalAmenities]
+
+  """"""
+  amenitiesWithIcons: AdditionalAmenitiesWithIcons
+
+  """"""
+  possessionDate: DateTime
+
+  """"""
+  averagePrice: String
+
+  """"""
+  localityInfo: LocalityInfo
+
+  """"""
+  meta: JSON
+
+  """"""
+  services: [String]
+
+  """"""
+  servicesIcons: [JSON]
+
+  """"""
+  loanOffers: [HomeLoanOffer]
+
+  """"""
+  faq: [Faq]
+
+  """"""
+  sliceViewUrl: String
+
+  """"""
+  polygonVideoLinks: [String]
+
+  """"""
+  houseRules: [String]
+
+  """"""
+  benefits: [String]
+
+  """"""
+  roomsAccessible: [String]
+
+  """"""
+  bankOffers: [Bank]
+
+  """"""
+  brochure: Brochure
+
+  """"""
+  paymentPlanImages: PropertyImages
+
+  """"""
+  flatInfo: FlatInfo
+}
+
+""""""
+type PropertyImages {
+  """"""
+  type: String
+
+  """"""
+  images: [PropertyImage!]
+}
+
+""""""
+type PropertyImage {
+  """"""
+  src: String
+
+  """"""
+  videoUrl: String
+
+  """"""
+  alt: String
+
+  """"""
+  tag: String
+
+  """"""
+  caption: String
+
+  """"""
+  type: String
+
+  """"""
+  floor: String
+
+  """"""
+  aspectRatio: Float
+
+  """"""
+  category: String
+}
+
+""""""
+type Inventory {
+  """"""
+  type: String
+
+  """"""
+  displayAreaType: String
+
+  """"""
+  propertyConfig: [PropertyConfig]
+}
+
+""""""
+type PropertyConfig {
+  """"""
+  key: ID
+
+  """"""
+  label: String
+
+  """"""
+  data: [PropertyConfigData]
+
+  """"""
+  sublabel: String
+
+  """"""
+  propertyTypeName: String
+
+  """"""
+  propertyTypeId: Int
+
+  """"""
+  range: String
+
+  """"""
+  roomData: RoomConfigData
+}
+
+""""""
+type PropertyConfigData {
+  """"""
+  id: ID
+
+  """"""
+  price: PriceConfig
+
+  """"""
+  unitsAvailable: Int
+
+  """"""
+  areaConfig: [AreaConfig]
+
+  """"""
+  averagePrice: String
+
+  """"""
+  emi: String
+
+  """"""
+  features: [String]
+
+  """"""
+  floorPlan: [PropertyImage]
+
+  """"""
+  projectAttributes: ProjectAttributes
+
+  """"""
+  additionalFields: [AdditionalField]
+}
+
+""""""
+type PriceConfig {
+  """"""
+  value: Float
+
+  """"""
+  displayValue: String
+
+  """"""
+  unit: String
+
+  """"""
+  deposit: String
+
+  """"""
+  description: String
+}
+
+""""""
+type AreaConfig {
+  """"""
+  name: String
+
+  """"""
+  areaInfo: Area
+}
+
+""""""
+type Area {
+  """"""
+  value: Float!
+
+  """"""
+  unit: String
+
+  """"""
+  displayArea: String
+}
+
+""""""
+type ProjectAttributes {
+  """"""
+  name: String
+
+  """"""
+  status: String
+
+  """"""
+  reraId: String
+
+  """"""
+  possessionDate: String
+}
+
+""""""
+type AdditionalField {
+  """"""
+  id: String
+
+  """"""
+  label: String
+
+  """"""
+  value: String
+}
+
+""""""
+type RoomConfigData {
+  """"""
+  title: String
+
+  """"""
+  bathroom: String
+
+  """"""
+  balcony: Boolean
+
+  """"""
+  amenities: [AdditionalAmenitiesWithIcons]
+
+  """"""
+  availableFrom: String
+
+  """"""
+  availabilityText: String
+
+  """"""
+  priceConfig: RoomPriceConfig
+}
+
+""""""
+type AdditionalAmenitiesWithIcons {
+  """"""
+  type: String
+
+  """"""
+  label: String
+
+  """"""
+  data: [JSON]
+}
+
+""""""
+type RoomPriceConfig {
+  """"""
+  rent: Int
+
+  """"""
+  displayRentValue: String
+
+  """"""
+  securityDeposit: Int
+
+  """"""
+  displaySecurityDepositValue: String
+
+  """"""
+  oneTimeFee: Int
+
+  """"""
+  displayOneTimeFeeValue: String
+
+  """"""
+  otherBills: Int
+
+  """"""
+  displayOtherBillsValue: String
+
+  """"""
+  otherBillsText: String
+}
+
+""""""
+type AdditionalAmenities {
+  """"""
+  type: String
+
+  """"""
+  label: String
+
+  """"""
+  data: [String]
+
+  """"""
+  icons: [JSON]
+
+  """"""
+  additionalData: [AdditionalField]
+}
+
+""""""
+type LocalityInfo {
+  """"""
+  entity: RealEstateEntity
+
+  """"""
+  avgRate: PriceConfig
+
+  """"""
+  growthRate: PriceConfig
+
+  """"""
+  priceTrends: JSON
+
+  """"""
+  description: String
+
+  """"""
+  videoLinks: [String]
+
+  """"""
+  priceTrendsUrl: String
+
+  """"""
+  polygonOverviewUrl: String
+
+  """"""
+  overallScore: Float
+
+  """"""
+  scoreComponents: [ScoreComponent]
+
+  """"""
+  distributionData: [DistributionData]
+
+  """"""
+  localityOverviewUrl: String
+
+  """"""
+  priceTrendUrl: String
+}
+
+""""""
+type ScoreComponent {
+  """"""
+  label: String
+
+  """"""
+  description: String
+
+  """"""
+  value: Float
+}
+
+""""""
+type DistributionData {
+  """"""
+  title: String
+
+  """"""
+  overviewLink: SeoLink
+
+  """"""
+  subTitle: String
+
+  """"""
+  tabs: [DistributionTabData]
+
+  """"""
+  chart: String
+}
+
+""""""
+type DistributionTabData {
+  """"""
+  title: String
+
+  """"""
+  data: JSON
+}
+
+""""""
+type HomeLoanOffer {
+  """"""
+  id: ID!
+
+  """"""
+  bank: Bank
+
+  """"""
+  interestRates: [Interest!]
+
+  """"""
+  processingFee: Interest
+
+  """"""
+  stats: [FeatureOrStats]
+
+  """"""
+  offers: [String]
+
+  """"""
+  url: String
+
+  """"""
+  preApproved: Boolean!
+
+  """"""
+  logo: String
+
+  """"""
+  tenures: JSON
+}
+
+""""""
+type Bank {
+  """"""
+  name: String!
+
+  """"""
+  logo: String!
+
+  """"""
+  id: ID!
+}
+
+""""""
+type Brochure {
+  """"""
+  images: PropertyImages
+
+  """"""
+  pdf: String
+
+  """"""
+  name: String
+}
+
+""""""
+type FlatInfo {
+  """"""
+  furnishingType: String
+
+  """"""
+  occupants: Int
+
+  """"""
+  floor: String
+
+  """"""
+  houseHelp: String
+
+  """"""
+  parkingCount: Int
+
+  """"""
+  bathroom: String
+
+  """"""
+  amenities: [AdditionalAmenitiesWithIcons]
+
+  """"""
+  houseRules: String
+}
+
+""""""
+type PropertyDescription {
+  """"""
+  overview: String
+
+  """"""
+  overviewDescription: String
+
+  """"""
+  highlights: [String]
+}
+
+""""""
+type DisplayPriceConfig {
+  """"""
+  value: [Float]
+
+  """"""
+  displayValue: String
+
+  """"""
+  unit: String
+
+  """"""
+  deposit: String
+
+  """"""
+  maxPrice: Float
+
+  """"""
+  description: String
+}
+
+""""""
+type PropertyAddress {
+  """"""
+  address: String
+
+  """"""
+  detailedPropertyAddress: [PropertyAddressDetail]
+
+  """"""
+  url: String
+
+  """"""
+  distanceFromEntity: Float
+
+  """"""
+  landmark: Entity
+
+  """"""
+  city: City
+
+  """"""
+  subAddress: String
+}
+
+""""""
+type PropertyAddressDetail {
+  """"""
+  url: String
+
+  """"""
+  val: String
+}
+
+""""""
+type Entity {
+  """"""
+  id: ID!
+
+  """"""
+  name: String
+
+  """"""
+  type: String
+
+  """"""
+  url: String
+}
+
+""""""
+type User {
+  """"""
+  name: String
+
+  """"""
+  firmName: String
+
+  """"""
+  firmImage: String
+
+  """"""
+  id: ID
+
+  """"""
+  email: String
+
+  """"""
+  phone: Telephone
+
+  """"""
+  url: String
+
+  """"""
+  website: String
+
+  """"""
+  image: String
+
+  """"""
+  description: String
+
+  """"""
+  sellerDescription: String
+
+  """"""
+  tags: [String]
+
+  """"""
+  promotions: [String]
+
+  """"""
+  type: String
+
+  """"""
+  cities: [City]
+
+  """"""
+  localities: [Entity]
+
+  """"""
+  stats: [FeatureOrStats]
+
+  """"""
+  isPrime: Boolean
+
+  """"""
+  isPaid: Boolean
+
+  """"""
+  designation: String
+
+  """"""
+  properties: [Property]
+
+  """"""
+  meta: JSON
+
+  """"""
+  theme: Theme
+
+  """"""
+  isCertifiedAgent: Boolean
+
+  """"""
+  agentVideoUrl: String
+
+  """"""
+  sellerTag: String
+
+  """"""
+  experience: String
+
+  """"""
+  contactPersonId: Int
+
+  """"""
+  adDeficit: Float
+}
+
+""""""
+type Telephone {
+  """"""
+  value: String!
+
+  """"""
+  countryData: Country
+
+  """"""
+  partialValue: String
+}
+
+""""""
+type Country {
+  """"""
+  id: Int!
+
+  """"""
+  name: String!
+
+  """"""
+  urlName: String!
+
+  """"""
+  countryCode: String!
+}
+
+""""""
+type Theme {
+  """"""
+  color: String
+}
+
+""""""
+type Insight {
+  """"""
+  id: String
+
+  """"""
+  value: String
+}
+
+""""""
+type VideoTour {
+  """"""
+  url: String
+
+  """"""
+  startDate: DateTime
+
+  """"""
+  endDate: DateTime
+
+  """"""
+  meetingNumber: String
+}
+
+""""""
+type SocialUrgency {
+  """"""
+  msg: String
+
+  """"""
+  value: String
+
+  """"""
+  type: String
+}
+
+""""""
+type Digitour {
+  """"""
+  url: String
+
+  """"""
+  image: String
+}
+
+""""""
+type DistFromLocality {
+  """"""
+  distance: Float
+
+  """"""
+  name: String
+}
+
+""""""
+type CertifiedDetails {
+  """"""
+  isVerifiedProperty: Boolean
+
+  """"""
+  isCertifiedProperty: Boolean
+
+  """"""
+  similarPropertyKeys: [String!]
+}
+
+""""""
+type PremiumDashboardData {
+  """"""
+  leadCapCount: Int
+
+  """"""
+  leadConsumedCount: Int
+
+  """"""
+  isReachingExhaustion: Boolean
+
+  """"""
+  currentPlan: PremiumPlan
+
+  """"""
+  nextPlan: PremiumPlan
+}
+
+""""""
+type PremiumPlan {
+  """"""
+  name: String
+
+  """"""
+  id: Int
+
+  """"""
+  benefits: [KeyValue]
+
+  """"""
+  displayPrice: Int
+
+  """"""
+  offerPrice: Int
+
+  """"""
+  isActive: Boolean
+
+  """"""
+  isPopular: Boolean
+
+  """"""
+  allowedOwnerLeads: Int
+
+  """"""
+  ownerContactLimit: Int
+}
+
+""""""
+type KeyValue {
+  """"""
+  key: String
+
+  """"""
+  value: String
+}
+
+""""""
+type ContactedProperty {
+  """"""
+  property: Property
+
+  """"""
+  status: String
+
+  """"""
+  phone: String
+}
+
+""""""
+type SearchHashResponse {
+  """"""
+  hash: String
+
+  """"""
+  redirectUrl: String
+
+  """"""
+  statusCode: Int
+
+  """"""
+  featureType: String
+}
+
+""""""
+input CreateLeadInput {
+  """"""
+  name: String
+
+  """"""
+  email: String
+
+  """"""
+  phone: TelephoneInput
+
+  """"""
+  allowChurn: Boolean
+
+  """"""
+  whatsapp: Boolean
+
+  """"""
+  homeLoan: Boolean
+
+  """"""
+  requestPhotos: Boolean
+
+  """"""
+  uuid: String
+
+  """"""
+  slotId: String
+
+  """"""
+  roomType: [String]
+
+  """"""
+  propertyConfig: [Int]
+
+  """"""
+  sellers: [JSON]
+
+  """"""
+  meta: LeadMetaData!
+
+  """"""
+  trueCallerVerified: Boolean
+
+  """"""
+  cta: String
+
+  """"""
+  leadGenerator: String
+}
+
+""""""
+input TelephoneInput {
+  """"""
+  value: String
+
+  """"""
+  countryData: CountryInput
+}
+
+""""""
+input CountryInput {
+  """"""
+  id: Int
+
+  """"""
+  name: String
+
+  """"""
+  urlName: String
+
+  """"""
+  countryCode: String
+}
+
+""""""
+input LeadMetaData {
+  """"""
+  property: CrfProperty
+
+  """"""
+  leadId: ID
+
+  """"""
+  encodedInfo: String
+
+  """"""
+  city: CityInput
+
+  """"""
+  filters: JSON
+
+  """"""
+  service: String
+
+  """"""
+  category: String
+
+  """"""
+  pageUrl: String
+
+  """"""
+  placement: String
+
+  """"""
+  utm: JSON
+
+  """"""
+  domain: Int
+
+  """"""
+  event: EventInput
+
+  """"""
+  isUserSelectedBhk: Boolean
+
+  """"""
+  pageTypeMajor: String
+}
+
+""""""
+input CrfProperty {
+  """"""
+  id: ID
+
+  """"""
+  isActiveProperty: Boolean
+
+  """"""
+  propertyType: String
+
+  """"""
+  slotId: Int
+
+  """"""
+  nonReraPyr: Boolean
+
+  """"""
+  multiCardId: String
+
+  """"""
+  isRentalVideoPresent: Boolean
+
+  """"""
+  propertyCityId: ID
+
+  """"""
+  listingPosition: Int
+
+  """"""
+  listingRank: Int
+
+  """"""
+  updatedAt: String
+}
+
+""""""
+input EventInput {
+  """"""
+  id: ID
+
+  """"""
+  sponsorType: String
+
+  """"""
+  sponsorName: String
+}
+
+""""""
+type PostCrfAds {
+  """"""
+  similarProperties: [Property]
+
+  """"""
+  ownerProperties: [Property]
+
+  """"""
+  event: Event
+}
+
+""""""
+type Event {
+  """"""
+  id: Int
+
+  """"""
+  title: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  highlights: [EventHighlights]
+
+  """"""
+  startDate: String
+
+  """"""
+  endDate: String
+
+  """"""
+  url: String
+
+  """"""
+  offers: [EventOffer]
+
+  """"""
+  description: String
+
+  """"""
+  projects: [EventProjects]
+
+  """"""
+  filters: EventFilters
+
+  """"""
+  brokers: [EventSellers]
+
+  """"""
+  titlePartners: [EventPartner]
+
+  """"""
+  associatePartners: [EventPartner]
+
+  """"""
+  developers: [EventSellers]
+
+  """"""
+  showCrf: Boolean
+
+  """"""
+  tags: [Entity]
+
+  """"""
+  organizer: String
+
+  """"""
+  logo: String
+
+  """"""
+  coverImage: String
+
+  """"""
+  howItWorks: [String]
+
+  """"""
+  structuredData: JSON
+
+  """"""
+  videoTours: [Property]
+}
+
+""""""
+type EventHighlights {
+  """"""
+  title: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  description: String
+
+  """"""
+  logo: String
+}
+
+""""""
+type EventOffer {
+  """"""
+  title: String
+
+  """"""
+  image: String
+
+  """"""
+  description: String
+}
+
+""""""
+type EventProjects {
+  """"""
+  type: String
+
+  """"""
+  properties: [Property]
+}
+
+""""""
+type EventFilters {
+  """"""
+  activeCities: [String]
+
+  """"""
+  localities: [RealEstateEntity]
+
+  """"""
+  featuredBrokersLocalities: [RealEstateEntity]
+
+  """"""
+  platinumBrokersLocalities: [RealEstateEntity]
+
+  """"""
+  certifiedAgentsLocalities: [RealEstateEntity]
+
+  """"""
+  silverProjectsLocalities: [RealEstateEntity]
+
+  """"""
+  budget: [InputRangeResponse]
+
+  """"""
+  developers: [Entity]
+}
+
+""""""
+type InputRangeResponse {
+  """"""
+  min: Float
+
+  """"""
+  max: Float
+}
+
+""""""
+type EventSellers {
+  """"""
+  type: String
+
+  """"""
+  sellers: [User]
+}
+
+""""""
+type EventPartner {
+  """"""
+  title: String
+
+  """"""
+  description: String
+
+  """"""
+  coverImage: String
+
+  """"""
+  logo: String
+
+  """"""
+  image: String
+
+  """"""
+  highlights: [String]
+
+  """"""
+  websiteLink: String
+
+  """"""
+  eventVideoURL: String
+
+  """"""
+  showSponsorLogo: Boolean
+}
+
+""""""
+type TCLeadData {
+  """"""
+  name: String
+
+  """"""
+  email: String
+
+  """"""
+  phone: Telephone
+
+  """"""
+  isFetched: Boolean
+
+  """"""
+  loginUser: LoginUser
+}
+
+""""""
+type LoginUser {
+  """"""
+  loggedIn: Boolean
+
+  """"""
+  name: String
+
+  """"""
+  id: ID
+
+  """"""
+  email: String
+
+  """"""
+  phone: String
+
+  """"""
+  shouldDisplayBadge: Boolean
+
+  """"""
+  designation: String
+
+  """"""
+  experience: String
+
+  """"""
+  isPrime: Boolean
+
+  """"""
+  subBrokers: [Entity]
+
+  """"""
+  url: String
+
+  """"""
+  image: String
+
+  """"""
+  profile: JSON
+
+  """"""
+  isBroker: Boolean
+
+  """"""
+  isOwner: Boolean
+
+  """"""
+  isUser: Boolean
+
+  """"""
+  isSeller: Boolean
+
+  """"""
+  isBuilder: Boolean
+
+  """"""
+  profileType: String
+
+  """"""
+  emailVerified: Boolean
+
+  """"""
+  phoneVerified: String
+
+  """"""
+  shortList: JSON
+
+  """"""
+  hideProfilePicture: Boolean
+
+  """"""
+  fbConnected: Boolean
+
+  """"""
+  gplusConnected: Boolean
+
+  """"""
+  isPasswordRandom: Boolean
+
+  """"""
+  uuid: String
+
+  """"""
+  profileTypes: [String]
+
+  """"""
+  recentSearches: JSON
+
+  """"""
+  countryData: Country
+
+  """"""
+  shareShortlistUrl: String
+
+  """"""
+  contactedProperties: JSON
+
+  """"""
+  isPaidProfile: Boolean
+
+  """"""
+  whatsappSubscription: String
+}
+
+""""""
+input EntityInput {
+  """"""
+  id: ID!
+
+  """"""
+  name: String
+
+  """"""
+  type: String
+
+  """"""
+  url: String
+}
+
+""""""
+type CityData {
+  """"""
+  spotlightDeveloper: User
+
+  """"""
+  event: Event
+
+  """"""
+  trendingProjects: [Property]
+
+  """"""
+  featuredProjects: [Property]
+
+  """"""
+  featuredDevelopers: [User]
+
+  """"""
+  videoTour: String
+
+  """"""
+  coLivingPartners(service: String!, category: String, city: EntityInput): [CoLivingPartners]
+
+  """"""
+  collections(service: String!, category: String, city: EntityInput): [Collection]
+
+  """"""
+  siteTakeoverNew: Property
+
+  """"""
+  siteTakeOverNewBuilder: SiteTakeOverBuilderInfo
+
+  """"""
+  digitour: Property
+
+  """"""
+  topProjects: [TopProject]
+
+  """"""
+  topEstablishments(service: String, category: String): [TopLocalities]
+
+  """"""
+  topLocalities(service: String!, category: String, city: EntityInput): [TopLocalityData]
+
+  """"""
+  structuredData(service: String!, category: String!, city: EntityInput): JSON
+
+  """"""
+  ownerProperties: [Property]
+
+  """"""
+  videoConnectProjects: [Property]
+}
+
+""""""
+type CoLivingPartners {
+  """"""
+  name: String
+
+  """"""
+  logo: String
+
+  """"""
+  url: String
+
+  """"""
+  description: String
+
+  """"""
+  image: String
+}
+
+""""""
+type Collection {
+  """"""
+  title: String
+
+  """"""
+  subTitle: String
+
+  """"""
+  price: String
+
+  """"""
+  url: String
+
+  """"""
+  image: String
+
+  """"""
+  key: ID
+
+  """"""
+  propertyCount: Int
+
+  """"""
+  stats: [FeatureOrStats]
+}
+
+""""""
+type SiteTakeOverBuilderInfo {
+  """"""
+  coverImage: PropertyImage
+
+  """"""
+  name: String
+
+  """"""
+  promotions: [String]
+
+  """"""
+  meta: JSON
+
+  """"""
+  description: String
+
+  """"""
+  url: String
+
+  """"""
+  image: String
+}
+
+""""""
+type TopProject {
+  """"""
+  data: Property
+
+  """"""
+  cards: [String]
+}
+
+""""""
+type TopLocalities {
+  """"""
+  id: ID
+
+  """"""
+  title: String
+
+  """"""
+  name: String
+
+  """"""
+  price: PriceConfig
+
+  """"""
+  type: String
+
+  """"""
+  displayType: String
+
+  """"""
+  image: String
+
+  """"""
+  subType: String
+
+  """"""
+  priceTrends: JSON
+
+  """"""
+  trendingSearches: [FeatureOrStats]
+
+  """"""
+  features: [FeatureOrStats]
+
+  """"""
+  growthRate: Float
+
+  """"""
+  url: String
+
+  """"""
+  insightsPresent: Boolean
+}
+
+""""""
+type TopLocalityData {
+  """"""
+  key: String
+
+  """"""
+  label: String
+
+  """"""
+  data: [TopLocalities]
+}
+
+""""""
+type AllCitiesData {
+  """"""
+  topCitiesProjects(city: CityInput): [CityTopProject]
+
+  """"""
+  featuredDevelopers: [User]
+
+  """"""
+  trendingProjects: [Property]
+}
+
+""""""
+type CityTopProject {
+  """"""
+  id: String
+
+  """"""
+  name: String
+
+  """"""
+  properties: [Property]
+}
+
+""""""
+type PropertyPaymentPlan {
+  """"""
+  tnc: [String]
+
+  """"""
+  paymentPlan: [PropertyPayPlan]
+
+  """"""
+  priceBreakup: [FeatureOrStats]
+
+  """"""
+  otherCharges: [FeatureOrStats]
+}
+
+""""""
+type PropertyPayPlan {
+  """"""
+  name: String
+
+  """"""
+  data: JSON
+}
+
+""""""
+type SubscriptionResponse {
+  """"""
+  id: Int!
+
+  """"""
+  tags: JSON
+
+  """"""
+  service: String!
+
+  """"""
+  searchUrl: String
+
+  """"""
+  count: Int
+
+  """"""
+  localities: [JSON]
+}
+
+""""""
+type GeocodeResponse {
+  """"""
+  city: City
+
+  """"""
+  entity: RealEstateEntity
+}
+
+""""""
+input PageInfoInput {
+  """"""
+  page: Int
+
+  """"""
+  size: Int
+}
+
+""""""
+type PropertyCount {
+  """"""
+  count: Int
+}
+
+""""""
+type Polygon {
+  """"""
+  id: ID!
+
+  """"""
+  featureType: String
+
+  """"""
+  name: String
+
+  """"""
+  type: String
+
+  """"""
+  subType: String
+
+  """"""
+  displayType: String
+
+  """"""
+  polylines: [String]
+
+  """"""
+  url: String
+
+  """"""
+  center: [String!]
+
+  """"""
+  score: String
+}
+
+""""""
+type CheckDetailResponse {
+  """"""
+  key: String
+
+  """"""
+  id: ID
+
+  """"""
+  status: String
+
+  """"""
+  present: Boolean
+
+  """"""
+  associatedTo: String
+
+  """"""
+  message: String
+}
+
+""""""
+type GeneralLoginResponse {
+  """"""
+  success: Boolean
+
+  """"""
+  message: String
+
+  """"""
+  data: LoginUser
+}
+
+""""""
+enum SocialLoginMethods {
+  """"""
+  FB
+
+  """"""
+  GOOGLE
+}
+
+""""""
+type FetchLocationResponse {
+  """"""
+  city: City
+
+  """"""
+  continent: String
+
+  """"""
+  country: String
+}
+
+""""""
+type FilterSuggestions {
+  """"""
+  url: String!
+
+  """"""
+  label: String!
+
+  """"""
+  totalCount: Int
+}
+
+""""""
+type TopCitySection {
+  """"""
+  serviceType: String
+
+  """"""
+  otherCities: [CityObject]
+
+  """"""
+  topCitiesUrlList: [TopCityData]
+}
+
+""""""
+type CityObject {
+  """"""
+  name: String
+
+  """"""
+  urlName: String
+}
+
+""""""
+type TopCityData {
+  """"""
+  cityId: ID
+
+  """"""
+  urls: [UrlObject]
+}
+
+""""""
+type UrlObject {
+  """"""
+  label: String
+
+  """"""
+  link: String
+}
+
+""""""
+type TransactionsResponse {
+  """"""
+  transactions: [Transaction]
+
+  """"""
+  totalCount: Int
+
+  """"""
+  payoutFailureCount: Int
+}
+
+""""""
+type Transaction {
+  """"""
+  orderId: ID!
+
+  """"""
+  transactionId: ID
+
+  """"""
+  transactionUuid: ID
+
+  """"""
+  orderType: String!
+
+  """"""
+  title: String
+
+  """"""
+  date: DateTime
+
+  """"""
+  stats: [FeatureOrStats]!
+
+  """"""
+  info: String
+
+  """"""
+  paymentDetails: TransactionPaymentDetails!
+
+  """"""
+  actions: [TransactionAction]
+
+  """"""
+  details: TransactionDetail
+
+  """"""
+  partialFilled: Boolean
+
+  """"""
+  manualPennyDropRequired: Boolean
+}
+
+""""""
+type TransactionPaymentDetails {
+  """"""
+  amount: Float!
+
+  """"""
+  status: FeatureOrStats!
+
+  """"""
+  title: String
+
+  """"""
+  paymentModeId: ID
+}
+
+""""""
+type TransactionDetail {
+  """"""
+  steps: [FeatureOrStats]
+
+  """"""
+  summary: [TransactionSummary]!
+}
+
+""""""
+type TransactionSummary {
+  """"""
+  title: String
+
+  """"""
+  details: [FeatureOrStats]
+}
+
+""""""
+type CouponConfig {
+  """"""
+  offerType: String
+
+  """"""
+  placeholders: [PlaceholderConfig]
+
+  """"""
+  coupons: [CouponCodeConfig]
+
+  """"""
+  validFrom: Float
+
+  """"""
+  validTo: Float
+}
+
+""""""
+type PlaceholderConfig {
+  """"""
+  key: String
+
+  """"""
+  value: String
+
+  """"""
+  keyType: String
+}
+
+""""""
+type CouponCodeConfig {
+  """"""
+  id: Int
+
+  """"""
+  code: String
+
+  """"""
+  offerId: Int
+
+  """"""
+  typeId: Int
+
+  """"""
+  couponStatus: String
+
+  """"""
+  metaData: CouponMetaData
+}
+
+""""""
+type CouponMetaData {
+  """"""
+  entityId: Int
+
+  """"""
+  entityType: String
+
+  """"""
+  value: Float
+
+  """"""
+  valueMetric: String
+}
+
+""""""
+type Transactions {
+  """"""
+  date: DateTime
+
+  """"""
+  status: String
+
+  """"""
+  orderType: String
+
+  """"""
+  amount: Int
+
+  """"""
+  orderId: ID
+
+  """"""
+  errors: JSON
+}
+
+""""""
+type Society {
+  """"""
+  name: String!
+
+  """"""
+  address: String
+
+  """"""
+  link: [SeoLink!]!
+}
+
+""""""
+type Favorites {
+  """"""
+  project: [String]
+
+  """"""
+  project_listing: [String]
+
+  """"""
+  rent: [String]
+
+  """"""
+  resale: [String]
+
+  """"""
+  pg: [String]
+
+  """"""
+  commercial: [String]
+}
+
+""""""
+type FeedbackForm {
+  """"""
+  key: Int
+
+  """"""
+  text: String
+
+  """"""
+  subtext: String
+
+  """"""
+  type: String
+
+  """"""
+  options: [FeedbackOptions]
+}
+
+""""""
+type FeedbackOptions {
+  """"""
+  key: Int
+
+  """"""
+  label: String
+
+  """"""
+  leafNode: Boolean
+
+  """"""
+  withText: Boolean
+}
+
+""""""
+type FeedbackRatingDetails {
+  """"""
+  id: Int
+
+  """"""
+  label: String
+
+  """"""
+  rating: Int
+
+  """"""
+  pills: [FeedbackRatingPill]
+}
+
+""""""
+type FeedbackRatingPill {
+  """"""
+  id: Int
+
+  """"""
+  label: String
+
+  """"""
+  rangeStart: Int
+
+  """"""
+  rangeEnd: Int
+}
+
+""""""
+type FeedbackRating {
+  """"""
+  entityId: Int
+
+  """"""
+  entityType: String
+
+  """"""
+  pageUrl: String
+
+  """"""
+  ratingId: Int
+
+  """"""
+  aggregateRating: Float
+
+  """"""
+  ratingDetails: [FeedbackRatingDetails]
+
+  """"""
+  testimonialId: Int
+
+  """"""
+  testimonial: String
+
+  """"""
+  userCategoryId: Int
+
+  """"""
+  userCategory: String
+}
+
+""""""
+type recentProperties {
+  """"""
+  properties: [Property!]
+
+  """"""
+  totalCount: Int
+}
+
+""""""
+type orderTypesResponse {
+  """"""
+  ownerOrders: [EdgeOrderType]
+
+  """"""
+  tenantOrders: [EdgeOrderType]
+}
+
+""""""
+type EdgeOrderType {
+  """"""
+  orderId: Int
+
+  """"""
+  serviceTypeId: Int
+
+  """"""
+  orderType: String
+
+  """"""
+  description: String
+
+  """"""
+  displayName: String
+
+  """"""
+  status: Boolean
+
+  """"""
+  url: String
+
+  """"""
+  benefits: [FeatureOrStats]
+}
+
+""""""
+type SearchResults {
+  """"""
+  properties: [Property!]
+
+  """"""
+  sellers: [User!]
+
+  """"""
+  promotedProperties: [SearchProperties!]
+
+  """"""
+  recentlyAddedProperties: [Property!]
+
+  """"""
+  promotedSellers: [SearchAgents!]
+
+  """"""
+  searchEntityDetails: SearchEntityDetails
+
+  """"""
+  config: SearchConfig!
+
+  """"""
+  meta: JSON
+
+  """"""
+  nearbyProperties: [Property!]
+
+  """"""
+  newProjectsNearBy: [Property!]
+
+  """"""
+  ownerNearbyProperties: [Property!]
+
+  """"""
+  buckets: [SearchAggregations]
+
+  """"""
+  collections: [Collection]
+
+  """"""
+  structuredData: JSON
+
+  """"""
+  propertyEventSd: JSON
+
+  """"""
+  canonical: String
+}
+
+""""""
+type SearchProperties {
+  """"""
+  properties: [Property!]
+
+  """"""
+  type: String
+}
+
+""""""
+type SearchAgents {
+  """"""
+  type: String
+
+  """"""
+  sellers: [User!]
+}
+
+""""""
+type SearchEntityDetails {
+  """"""
+  name: String
+
+  """"""
+  id: ID
+
+  """"""
+  subType: String
+
+  """"""
+  displayType: String
+
+  """"""
+  stats: [FeatureOrStats]
+
+  """"""
+  image: String
+
+  """"""
+  images: [PropertyImages!]
+
+  """"""
+  localityInfo: LocalityInfo
+
+  """"""
+  url: String
+
+  """"""
+  address: String
+
+  """"""
+  type: String
+
+  """"""
+  city: City
+
+  """"""
+  polygon: Polygon
+
+  """"""
+  developer: User
+
+  """"""
+  amenities: [JSON]
+}
+
+""""""
+type SearchConfig {
+  """"""
+  hash: String
+
+  """"""
+  filters: JSON!
+
+  """"""
+  pageInfo: PageInfo!
+
+  """"""
+  service: String
+
+  """"""
+  category: String
+
+  """"""
+  entities: [RealEstateEntity!]!
+
+  """"""
+  city: City
+}
+
+""""""
+type PageInfo {
+  """"""
+  totalCount: Int!
+
+  """"""
+  numPages: Int!
+
+  """"""
+  hasMorePages: Boolean
+
+  """"""
+  size: Int
+
+  """"""
+  page: Int
+}
+
+""""""
+type SearchAggregations {
+  """"""
+  key: ID
+
+  """"""
+  totalCount: Int
+
+  """"""
+  data: [SearchBuckets!]
+}
+
+""""""
+type SearchBuckets {
+  """"""
+  id: ID
+
+  """"""
+  totalCount: Int
+}
+
+""""""
+type ReportErrorType {
+  """"""
+  id: String!
+
+  """"""
+  name: String!
+
+  """"""
+  subTypes: [ReportErrorType]
+}
+
+""""""
+type SimilarProperties {
+  """"""
+  properties: [Property]
+
+  """"""
+  totalCount: Int
+
+  """"""
+  url: String
+
+  """"""
+  variant: String!
+
+  """"""
+  structuredData: JSON
+}
+
+""""""
+type response {
+  """"""
+  status: String
+
+  """"""
+  data: JSON
+}
+
+""""""
+type FeedbackOptionsEdge {
+  """"""
+  id: Int
+
+  """"""
+  name: String
+}
+
+""""""
+type PreviousNextListing {
+  """"""
+  nextSection: [Property]
+
+  """"""
+  previousSection: [Property]
+
+  """"""
+  similarPropertiesFallback: Boolean
+}
+
+""""""
+type Details {
+  """"""
+  properties: [DetailItem]
+}
+
+""""""
+type DetailItem {
+  """"""
+  details: Property!
+}
+
+""""""
+type EventCities {
+  """"""
+  eventId: Int
+
+  """"""
+  eventName: String
+
+  """"""
+  id: String
+
+  """"""
+  name: String
+
+  """"""
+  cityUuid: String
+
+  """"""
+  cityName: String
+
+  """"""
+  url: String
+}
+
+""""""
+type ProjectTrend {
+  """"""
+  avgPrice: Float
+
+  """"""
+  percentGrowth: Float
+
+  """"""
+  numberOfYears: Int
+
+  """"""
+  listingId: String
+
+  """"""
+  trend: [Trend]
+}
+
+""""""
+type Trend {
+  """"""
+  q1: Float
+
+  """"""
+  q2: Float
+
+  """"""
+  q3: Float
+
+  """"""
+  q4: Float
+
+  """"""
+  year: Int
+}
+
+""""""
+type GeneralResponse {
+  """"""
+  success: Boolean!
+
+  """"""
+  message: String
+
+  """"""
+  errors: JSON
+
+  """"""
+  status: Int
+}
+
+""""""
+type RatingData {
+  """"""
+  entityId: Int
+
+  """"""
+  avgRating: String
+
+  """"""
+  goodPills: [String]
+
+  """"""
+  ratingTypeDetails: [RatingDetails]
+
+  """"""
+  totalRatings: Int
+
+  """"""
+  ratingWiseCounts: RatingWiseCounts
+}
+
+""""""
+type RatingDetails {
+  """"""
+  avgRating: String
+
+  """"""
+  ratingTypeId: Int
+
+  """"""
+  ratingTypeLabel: String
+}
+
+""""""
+type RatingWiseCounts {
+  """"""
+  one: Int
+
+  """"""
+  two: Int
+
+  """"""
+  three: Int
+
+  """"""
+  four: Int
+
+  """"""
+  five: Int
+}
+
+""""""
+type Reviews {
+  """"""
+  totalCount: Int
+
+  """"""
+  reviewsData: [ReviewsData]
+}
+
+""""""
+type ReviewsData {
+  """"""
+  avgRating: String
+
+  """"""
+  postedAt: String
+
+  """"""
+  postedBy: String
+
+  """"""
+  testimonial: String
+
+  """"""
+  bulkUpload: Boolean
+
+  """"""
+  reviewerName: String
+
+  """"""
+  userCategory: String
+
+  """"""
+  id: Int
+}
+
+""""""
+type ServiceHealthStatus {
+  """"""
+  services: [Service]
+}
+
+""""""
+type Service {
+  """"""
+  serviceName: String
+
+  """"""
+  status: String
+
+  """"""
+  children: [ChildService]
+
+  """"""
+  meta: ServiceMetaInfo
+}
+
+""""""
+type ChildService {
+  """"""
+  serviceName: String
+
+  """"""
+  status: String
+
+  """"""
+  children: [ChildService]
+
+  """"""
+  meta: ServiceMetaInfo
+}
+
+""""""
+type ServiceMetaInfo {
+  """"""
+  buildTimeStamp: String
+
+  """"""
+  gitBranch: String
+
+  """"""
+  buildUser: String
+}
+
+""""""
+type Faqs {
+  """"""
+  faq: [Faq]
+
+  """"""
+  structuredData: JSON
+}
+
+""""""
+type MissedProperty {
+  """"""
+  features: [FeatureOrStats]
+
+  """"""
+  details: PropertyDetails
+
+  """"""
+  galleryTitle: String
+
+  """"""
+  coverImage: PropertyImage
+
+  """"""
+  hasAutoVideo: Boolean
+
+  """"""
+  imageCount: Int
+
+  """"""
+  description: PropertyDescription
+
+  """"""
+  title: String!
+
+  """"""
+  filterTitle: String
+
+  """"""
+  expTitle: String
+
+  """"""
+  propertyType: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  tags: [String!]
+
+  """"""
+  displayPrice: DisplayPriceConfig
+
+  """"""
+  address: PropertyAddress
+
+  """"""
+  keyPoints: [String]
+
+  """"""
+  highlights: [String]
+
+  """"""
+  sellers: [User]
+
+  """"""
+  insights: [Insight]
+
+  """"""
+  videoTour: VideoTour
+
+  """"""
+  project: User
+
+  """"""
+  sellerCount: Int
+
+  """"""
+  entity: RealEstateEntity
+
+  """"""
+  carpetArea: Area
+
+  """"""
+  builtUpArea: Area
+
+  """"""
+  showPerSqftRate: Boolean
+
+  """"""
+  videoConnectAvailable: Boolean
+
+  """"""
+  furnishingType: String
+
+  """"""
+  url: String!
+
+  """"""
+  coords: [String!]
+
+  """"""
+  promotions: [String]
+
+  """"""
+  postedDate: DateTime
+
+  """"""
+  listingId: ID
+
+  """"""
+  originalListingId: ID
+
+  """"""
+  label: String
+
+  """"""
+  badge: String
+
+  """"""
+  isActiveProperty: Boolean
+
+  """"""
+  isUc: Boolean
+
+  """"""
+  addedOnDate: String
+
+  """"""
+  addedOnText: String
+
+  """"""
+  meta: JSON
+
+  """"""
+  tracking: JSON
+
+  """"""
+  updatedAt: DateTime
+
+  """"""
+  socialUrgency: SocialUrgency
+
+  """"""
+  socialContext: SocialUrgency
+
+  """"""
+  structuredData: JSON
+
+  """"""
+  emi: String
+
+  """"""
+  digitour: Digitour
+
+  """"""
+  inventoryCanonicalUrl: String
+
+  """"""
+  brands: [User]
+
+  """"""
+  showDeveloper: Boolean
+
+  """"""
+  minDistanceLocality: DistFromLocality
+
+  """"""
+  certifiedDetails: CertifiedDetails
+
+  """"""
+  micrositeRedirectionURL: String
+
+  """"""
+  eventVideoURL: String
+
+  """"""
+  eventVideoThumbnailURL: String
+
+  """"""
+  eventBoothImagePreviewURL: String
+
+  """"""
+  eventBoothURL: String
+
+  """"""
+  isAuctionFlat: Boolean
+
+  """"""
+  photoUnderReview: Boolean
+
+  """"""
+  developerLogo: String
+
+  """"""
+  spotlightPhotoUrl: String
+
+  """"""
+  propertyTags: [String]
+
+  """"""
+  roomType: String
+
+  """"""
+  isMyGateCertified: Boolean
+
+  """"""
+  propertyVideoUrl: String
+
+  """"""
+  propertyVideoThumbnailUrl: String
+
+  """"""
+  polygonsHash: JSON
+
+  """"""
+  streetInfo: String
+
+  """"""
+  landmark: String
+
+  """"""
+  priceOnRequest: Boolean
+
+  """"""
+  clubhouse: JSON
+
+  """"""
+  thumbImageUrl: String
+
+  """"""
+  inventoryAmenities: JSON
+
+  """"""
+  propertyInformation: JSON
+
+  """"""
+  videoKey: String
+
+  """"""
+  possessionDate: String
+
+  """"""
+  initiationDateSeconds: DateTime
+
+  """"""
+  addedOn: String
+
+  """"""
+  displayNeighbourhood: [String]
+
+  """"""
+  polygonDetails: JSON
+
+  """"""
+  price: Float
+
+  """"""
+  status: String
+
+  """"""
+  developerInformation: JSON
+
+  """"""
+  name: String
+
+  """"""
+  minSelectedArea: Int
+
+  """"""
+  unitOfArea: String
+
+  """"""
+  addressDetails: [String]
+
+  """"""
+  selectedAreaInUnits: Int
+
+  """"""
+  isBrokerageChargeable: Boolean
+}
+
+""""""
+type DecryptedInfo {
+  """"""
+  data: String
+}
+
+""""""
+type ActivityPropertyResponse {
+  """"""
+  shortlistedPropertyCounts: ShortlistedPropertyResponse
+
+  """"""
+  contactedPropertyCounts: ContactedPropertyResponse
+}
+
+""""""
+type ShortlistedPropertyResponse {
+  """"""
+  project: Int
+
+  """"""
+  projectListing: Int
+
+  """"""
+  rent: Int
+
+  """"""
+  resale: Int
+
+  """"""
+  commercial: Int
+}
+
+""""""
+type ContactedPropertyResponse {
+  """"""
+  buy: Int
+
+  """"""
+  rent: Int
+}
+
+""""""
+type Seo {
+  """"""
+  structuredData: JSON
+
+  """"""
+  noIndex: Boolean
+
+  """"""
+  title: String
+
+  """"""
+  unitConversionLinks: [SeoLink]
+
+  """"""
+  htmlSitemapLinks: [SeoLink]
+
+  """"""
+  popularSearchesNearby: [SeoLink]
+
+  """"""
+  breadCrumbs: [SeoLink!]
+
+  """"""
+  lang: String
+
+  """"""
+  languageList: JSON
+
+  """"""
+  description: String
+
+  """"""
+  canonical: String
+
+  """"""
+  imageUrl: String
+
+  """"""
+  keywords: [String!]
+
+  """"""
+  sideMenu: JSON
+
+  """"""
+  breadCrumbsMoreLinks: JSON
+
+  """"""
+  moreLinksPresent: Boolean
+
+  """"""
+  suggestedLinks: JSON
+
+  """"""
+  extraLinks: JSON
+
+  """"""
+  featureType: String
+
+  """"""
+  footerLinks: JSON
+
+  """"""
+  filterLinks: JSON
+
+  """"""
+  h1: String
+
+  """"""
+  pageType: String
+
+  """"""
+  contentSnippet: String
+
+  """"""
+  h2: String
+
+  """"""
+  entities: [RealEstateEntity!]
+
+  """"""
+  redirectUrl: String
+
+  """"""
+  statusCode: Int
+
+  """"""
+  urlLabel: String
+
+  """"""
+  meta: PageData
+
+  """"""
+  leafPageLinks: JSON
+}
+
+""""""
+type PageData {
+  """"""
+  city: City
+
+  """"""
+  languageCodes: [String]
+}
+
+""""""
+type UrlListResponse {
+  """"""
+  pageInfo: PageInfo
+
+  """"""
+  list: [UrlListItem]
+}
+
+""""""
+type UrlListItem {
+  """"""
+  rent: String
+
+  """"""
+  buy: String
+
+  """"""
+  pg: String
+
+  """"""
+  label: String
+}
+
+""""""
+type IrefPost {
+  """"""
+  title: String
+
+  """"""
+  description: String
+
+  """"""
+  id: ID
+
+  """"""
+  url: String
+
+  """"""
+  date: DateTime
+
+  """"""
+  creator: IrefPostCreator
+
+  """"""
+  quote: IrefPostQuote
+
+  """"""
+  comments: [IrefPost]
+}
+
+""""""
+type IrefPostCreator {
+  """"""
+  id: ID
+
+  """"""
+  name: String
+
+  """"""
+  numPosts: Int
+
+  """"""
+  lastPostDate: DateTime
+}
+
+""""""
+type IrefPostQuote {
+  """"""
+  description: String
+
+  """"""
+  creator: IrefPostCreator
+}
+
+""""""
+type BuildersData {
+  """"""
+  builders: [User!]
+
+  """"""
+  pageInfo: PageInfo!
+
+  """"""
+  meta: JSON
+
+  """"""
+  structuredData: JSON
+}
+
+""""""
+type NearByPoly {
+  """"""
+  id: ID!
+
+  """"""
+  name: String!
+
+  """"""
+  distance: Float
+
+  """"""
+  key: String
+
+  """"""
+  avgPricePerSqft: PriceConfig
+
+  """"""
+  percentGrowth: Float
+
+  """"""
+  links: [SeoLink]
+
+  """"""
+  priceTrendsUrl: String
+}
+
+""""""
+type BankOffer {
+  """"""
+  bank: String!
+
+  """"""
+  id: ID!
+
+  """"""
+  logo: String
+
+  """"""
+  interestRates: [Interest!]
+
+  """"""
+  name: String!
+
+  """"""
+  processingFee: Interest
+
+  """"""
+  tenures: JSON
+}
+
+""""""
+type HomeloanFaqAnswer {
+  """"""
+  answer: String
+
+  """"""
+  description: String
+
+  """"""
+  question: String
+
+  """"""
+  title: String
+}
+
+""""""
+type PriceTrends {
+  """"""
+  minPrice: String
+
+  """"""
+  maxPrice: String
+
+  """"""
+  flatCount: String
+
+  """"""
+  percentageGrowth: Float
+
+  """"""
+  pageInfo: PageInfo
+
+  """"""
+  averagePrice: String
+
+  """"""
+  childTrends: [ChildTrends]
+
+  """"""
+  url: String
+
+  """"""
+  priceTrendUrl: String
+
+  """"""
+  description: String
+
+  """"""
+  trend: [JSON]
+}
+
+""""""
+type ChildTrends {
+  """"""
+  childInfo: Entity!
+
+  """"""
+  minPrice: String!
+
+  """"""
+  maxPrice: String!
+
+  """"""
+  averagePrice: String!
+
+  """"""
+  flatCount: String!
+
+  """"""
+  priceTrendUrl: String!
+}
+
+""""""
+type PriceTrendsV2 {
+  """"""
+  minPrice: String
+
+  """"""
+  maxPrice: String
+
+  """"""
+  flatCount: String
+
+  """"""
+  percentageGrowth: Float
+
+  """"""
+  pageInfo: PageInfo
+
+  """"""
+  averagePrice: String
+
+  """"""
+  childTrends: [ChildTrendsV2]
+
+  """"""
+  url: String
+
+  """"""
+  priceTrendUrl: String
+
+  """"""
+  description: String
+
+  """"""
+  trend: [JSON]
+}
+
+""""""
+type ChildTrendsV2 {
+  """"""
+  childInfo: Entity!
+
+  """"""
+  filteredTrends: [FilteredChildTrend]
+
+  """"""
+  priceTrendUrl: String!
+}
+
+""""""
+type FilteredChildTrend {
+  """"""
+  minPrice: String
+
+  """"""
+  maxPrice: String
+
+  """"""
+  averagePrice: String
+
+  """"""
+  flatCount: String
+
+  """"""
+  propertyTypeId: String
+
+  """"""
+  apartmentTypeId: String
+}
+
+""""""
+type HomeLoansBank {
+  """"""
+  mainText: String
+
+  """"""
+  titleText: String
+
+  """"""
+  bankHeadingNames: JSON
+}
+
+""""""
+type FaqData {
+  """"""
+  faq: [Faq]
+
+  """"""
+  structuredData: JSON
+}
+
+""""""
+type QnAData {
+  """"""
+  questions: [Question]
+
+  """"""
+  pageInfo: PageInfo
+}
+
+""""""
+type Question {
+  """"""
+  id: ID
+
+  """"""
+  q: String
+
+  """"""
+  a: String
+
+  """"""
+  entityId: String
+
+  """"""
+  entityTypeId: Int
+
+  """"""
+  answerCreatedAt: DateTime
+}
+
+""""""
+type QuestionTag {
+  """"""
+  id: Int
+
+  """"""
+  name: String
+}
+
+""""""
+type QuestionData {
+  """"""
+  question: Question
+}
+
+""""""
+type StateCountry {
+  """"""
+  id: String!
+
+  """"""
+  name: String
+
+  """"""
+  zone: String
+}
+
+""""""
+type Conversion {
+  """"""
+  units: [Unit]
+
+  """"""
+  conversionMaps: [StateConversion]
+}
+
+""""""
+type Unit {
+  """"""
+  id: ID
+
+  """"""
+  urlName: String
+
+  """"""
+  name: String
+
+  """"""
+  defaultState: String
+}
+
+""""""
+type StateConversion {
+  """"""
+  stateUuids: [String]
+
+  """"""
+  mappings: JSON
+}
+
+""""""
+type EstablishmentResponse {
+  """"""
+  category: EstablishmentCategory!
+
+  """"""
+  establishments: [Establishment]
+}
+
+""""""
+type EstablishmentCategory {
+  """"""
+  id: ID
+
+  """"""
+  name: String
+
+  """"""
+  count: Int
+
+  """"""
+  link: String
+
+  """"""
+  subCategories: [EstablishmentCategory]
+}
+
+""""""
+type Establishment {
+  """"""
+  id: ID
+
+  """"""
+  name: String
+
+  """"""
+  address: String
+
+  """"""
+  type: String
+
+  """"""
+  coords: [String]
+
+  """"""
+  nearbyProperties: [NearbyPropertyCount]
+}
+
+""""""
+type NearbyPropertyCount {
+  """"""
+  type: String
+
+  """"""
+  url: String
+
+  """"""
+  count: Int
+}
+
+""""""
+type PropertyLinksResponse {
+  """"""
+  buy: [PropertyLinks]
+
+  """"""
+  rent: [PropertyLinks]
+}
+
+""""""
+type PropertyLinks {
+  """"""
+  children: [PropertyLink]
+
+  """"""
+  label: String
+}
+
+""""""
+type PropertyLink {
+  """"""
+  url: String
+
+  """"""
+  key: String
+
+  """"""
+  label: String
+}
+
+""""""
+type LocalityGlob {
+  """"""
+  overview(locality: RealEstateEntityInput!): LocalityOverviewData!
+
+  """"""
+  topBuilders(locality: RealEstateEntityInput!): [User]
+
+  """"""
+  topProjects(locality: RealEstateEntityInput!): [Property]
+
+  """"""
+  collections(locality: RealEstateEntityInput!): [Collection]
+}
+
+""""""
+type LocalityOverviewData {
+  """"""
+  establishments: [FeatureOrStats]
+
+  """"""
+  famousPlaces: [PointOfInterest]
+
+  """"""
+  name: String!
+
+  """"""
+  address: String
+
+  """"""
+  coverImage: String
+
+  """"""
+  description: String
+
+  """"""
+  preciseDesc: String
+
+  """"""
+  livabilityScore: String
+
+  """"""
+  links: [SeoLink]
+
+  """"""
+  fullLocalityName: String
+
+  """"""
+  videoLinks: [String]
+
+  """"""
+  localityOverviewUrl: String
+}
+
+""""""
+type PointOfInterest {
+  """"""
+  category: String
+
+  """"""
+  subCategory: String
+
+  """"""
+  name: String
+
+  """"""
+  address: String
+
+  """"""
+  distance: Float
+
+  """"""
+  rating: Float
+
+  """"""
+  image: String
+
+  """"""
+  travelTime: Float
+
+  """"""
+  keyPoints: [String]
+
+  """"""
+  coords: [String!]
+}
+
+""""""
+type NewsResponse {
+  """"""
+  articles(poly: String, service: String!, clientDetails: JSON): [NewsArticle]
+
+  """"""
+  slugArticles(slug: String!, clientDetails: JSON): [NewsArticle]
+}
+
+""""""
+type NewsArticle {
+  """"""
+  title: String
+
+  """"""
+  subTitle: String
+
+  """"""
+  image: String
+
+  """"""
+  url: String
+
+  """"""
+  summary: String
+
+  """"""
+  publishDate: DateTime
+
+  """"""
+  updateDate: DateTime
+
+  """"""
+  author: User
+
+  """"""
+  mainText: String
+}
+
+""""""
+type UserCategories {
+  """"""
+  name: String
+
+  """"""
+  id: Int
+}
+
+""""""
+type EntityTypes {
+  """"""
+  poly: Poly
+
+  """"""
+  region_entity_id: RegionEntity
+}
+
+""""""
+type Poly {
+  """"""
+  ratingTypes: [RatingTypes]
+}
+
+""""""
+type RatingTypes {
+  """"""
+  id: Int
+
+  """"""
+  label: String
+
+  """"""
+  pills: [Pill]
+}
+
+""""""
+type Pill {
+  """"""
+  id: Int
+
+  """"""
+  ratingRangeStart: Int
+
+  """"""
+  ratingRangeEnd: Int
+
+  """"""
+  pill: String
+}
+
+""""""
+type RegionEntity {
+  """"""
+  ratingTypes: [RatingTypes]
+}
+
+""""""
+type ProjectDetails {
+  """"""
+  isUc: Boolean
+
+  """"""
+  canonicalUrl: String
+}
+
+""""""
+type BankUrlList {
+  """"""
+  name: String
+
+  """"""
+  url: String
+}
+
+""""""
+type RecommendedProject {
+  """"""
+  relatedProperty: String
+
+  """"""
+  projects: [Property]
+}
+
+""""""
+type RecentSearch {
+  """"""
+  title: String
+
+  """"""
+  subTitle: String
+
+  """"""
+  price: String
+
+  """"""
+  url: String!
+
+  """"""
+  image: String
+
+  """"""
+  propertyCount: Int
+
+  """"""
+  stats: [FeatureOrStats]
+}
+
+""""""
+type NearbyLocalities {
+  """"""
+  name: String
+
+  """"""
+  id: String!
+
+  """"""
+  stats: [FeatureOrStats]
+
+  """"""
+  totalCount: Int
+
+  """"""
+  price: DisplayPriceConfig
+
+  """"""
+  url: String
+
+  """"""
+  growthRate: Float
+
+  """"""
+  polyline: String
+
+  """"""
+  center: [String!]
+
+  """"""
+  distance: Float
+}
+
+""""""
+type ExploreEstablishments {
+  """"""
+  name: String
+
+  """"""
+  data: [EstablishmentSubCategory]
+}
+
+""""""
+type EstablishmentSubCategory {
+  """"""
+  name: String
+
+  """"""
+  url: String
+
+  """"""
+  data: [PointOfInterest]
+}
+
+""""""
+type DealsData {
+  """"""
+  totalDeals: Int
+
+  """"""
+  cityName: String
+
+  """"""
+  projectsData: [Property]
+
+  """"""
+  data: [Property]
+}
+
+""""""
+type SeoCanonical {
+  """"""
+  name: String
+
+  """"""
+  overviewUrl: String
+
+  """"""
+  priceTrendUrl: String
+
+  """"""
+  url: String
+
+  """"""
+  uuid: String
+}
+
+""""""
+type CanonicalUrls {
+  """"""
+  propertyUrl: String
+
+  """"""
+  ownerPropertyUrl: String
+
+  """"""
+  projectPropertyUrl: String
+
+  """"""
+  resalePropertyUrl: String
+
+  """"""
+  housePropertyUrl: String
+
+  """"""
+  flatPropertyUrl: String
+
+  """"""
+  plotPropertyUrl: String
+
+  """"""
+  villaPropertyUrl: String
+
+  """"""
+  roomRentPropertyUrl: String
+}
+
+""""""
+type uuidResponse {
+  """"""
+  polygonName: String
+
+  """"""
+  polygonType: String
+
+  """"""
+  polygonUuid: String
+
+  """"""
+  cityUuid: String
+
+  """"""
+  pincode: Int
+
+  """"""
+  pincodeUrlName: String!
+
+  """"""
+  cityName: String
+
+  """"""
+  cityUrlName: String
+
+  """"""
+  cityId: String
+
+  """"""
+  cityPincodeUrl: String
+}
+
+""""""
+type AncestorsResponse {
+  """"""
+  uuid: String!
+
+  """"""
+  name: String
+
+  """"""
+  featureType: String
+
+  """"""
+  urlName: String
+
+  """"""
+  featureValue: Int
+}
+
+""""""
+type CityListResponse {
+  """"""
+  uuid: String
+
+  """"""
+  name: String
+
+  """"""
+  displayName: String
+
+  """"""
+  type: String
+
+  """"""
+  urlName: String
+
+  """"""
+  pincode: Int
+
+  """"""
+  pincodeUrlName: String
+}
+
+""""""
+type LocalityDetailsResponse {
+  """"""
+  latitude: Float
+
+  """"""
+  longitude: Float
+
+  """"""
+  pincode: Int
+
+  """"""
+  taluk: String
+
+  """"""
+  nearby: JSON
+
+  """"""
+  videlLinks: JSON
+}
+
+""""""
+type Alliance {
+  """"""
+  dedicated: AllinaceDetails
+
+  """"""
+  hooks: [AllinaceHooks]
+
+  """"""
+  error: JSON
+}
+
+""""""
+type AllinaceDetails {
+  """"""
+  title: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  tcLink: String
+
+  """"""
+  offers: [AllinaceOffers]
+
+  """"""
+  images: [AllianceImage]
+
+  """"""
+  emailRequired: Boolean
+
+  """"""
+  emailMandatory: Boolean
+
+  """"""
+  brandDescription: String
+
+  """"""
+  description: String
+
+  """"""
+  contactPerson: String
+
+  """"""
+  brandImage: String
+
+  """"""
+  bannerImage: String
+
+  """"""
+  brandUrl: String
+
+  """"""
+  brandUrlLabel: String
+
+  """"""
+  brandName: String
+
+  """"""
+  terms: String
+
+  """"""
+  slotId: Int
+
+  """"""
+  catalogImage: String
+
+  """"""
+  adSlotPosition: String
+}
+
+""""""
+type AllinaceOffers {
+  """"""
+  title: String
+
+  """"""
+  description: String
+}
+
+""""""
+type AllianceImage {
+  """"""
+  url: String
+
+  """"""
+  title: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  content: String!
+}
+
+""""""
+type AllinaceHooks {
+  """"""
+  slotId: Int
+
+  """"""
+  template: String!
+
+  """"""
+  offers: JSON
+
+  """"""
+  offer: String
+
+  """"""
+  title: String!
+
+  """"""
+  subtitle: String!
+
+  """"""
+  cta: String
+
+  """"""
+  heroImage: String
+
+  """"""
+  brandImage: String
+
+  """"""
+  brandUrl: String
+
+  """"""
+  brandUrlLabel: String
+
+  """"""
+  brandName: String
+
+  """"""
+  bannerImage: String
+
+  """"""
+  terms: String
+
+  """"""
+  url: String
+
+  """"""
+  adSlotPosition: String
+}
+
+""""""
+type FalconDeveloperInfo {
+  """"""
+  featuredProjects: [FalconDeveloperProjects]
+
+  """"""
+  projects: [Property]
+
+  """"""
+  seller: User
+
+  """"""
+  redirectUrl: String
+
+  """"""
+  cities: [City]
+
+  """"""
+  images: [String]
+}
+
+""""""
+type FalconDeveloperProjects {
+  """"""
+  id: ID
+
+  """"""
+  url: String
+
+  """"""
+  template: String
+
+  """"""
+  title: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  description: String
+
+  """"""
+  coverImage: String
+
+  """"""
+  images: [String]
+
+  """"""
+  secondaryImages: [String]
+
+  """"""
+  highlights: [String]
+
+  """"""
+  usp: FalconDeveloperFeatures
+
+  """"""
+  features: [FalconDeveloperFeatures]
+}
+
+""""""
+type FalconDeveloperFeatures {
+  """"""
+  title: String
+
+  """"""
+  description: String
+
+  """"""
+  image: String
+
+  """"""
+  subtitle: String
+}
+
+""""""
+type SilverProjects {
+  """"""
+  properties: [Property]
+
+  """"""
+  isLastPage: Boolean
+
+  """"""
+  cursor: String
+}
+
+""""""
+type EventBrokers {
+  """"""
+  brokers: [User]
+
+  """"""
+  isLastPage: Boolean
+
+  """"""
+  cursor: String
+}
+
+""""""
+type VideoChatUrlResponse {
+  """"""
+  error: Boolean
+
+  """"""
+  meetingId: String
+
+  """"""
+  attendeeId: String
+
+  """"""
+  message: String
+}
+
+""""""
+type VideoSellerAvailableResponse {
+  """"""
+  status: String
+
+  """"""
+  message: String
+}
+
+""""""
+type VideoAttendeeStatusResponse {
+  """"""
+  status: Boolean
+}
+
+""""""
+type VideoMeetingResponse {
+  """"""
+  Meeting: MeetingResponse
+
+  """"""
+  Attendee: AttendeeResponse
+
+  """"""
+  Attendees: [Attendee]
+
+  """"""
+  message: String
+}
+
+""""""
+type MeetingResponse {
+  """"""
+  MeetingId: String
+
+  """"""
+  ExternalMeetingId: String
+
+  """"""
+  MediaPlacement: MediaPlacement
+
+  """"""
+  MediaRegion: String
+}
+
+""""""
+type MediaPlacement {
+  """"""
+  AudioHostUrl: String
+
+  """"""
+  AudioFallbackUrl: String
+
+  """"""
+  ScreenDataUrl: String
+
+  """"""
+  ScreenSharingUrl: String
+
+  """"""
+  SignalingUrl: String
+
+  """"""
+  TurnControlUrl: String
+}
+
+""""""
+type AttendeeResponse {
+  """"""
+  AttendeeId: String
+
+  """"""
+  ExternalUserId: String
+
+  """"""
+  JoinToken: String
+}
+
+""""""
+type Attendee {
+  """"""
+  key: String
+
+  """"""
+  value: String
+
+  """"""
+  typeId: Int
+}
+
+""""""
+type PartnerCrfResponse {
+  """"""
+  message: String
+}
+
+""""""
+type OwnerPackagePricing {
+  """"""
+  product: ID
+
+  """"""
+  packages: [OwnerPackageData]
+}
+
+""""""
+type OwnerPackageData {
+  """"""
+  packageName: String
+
+  """"""
+  packageId: Int
+
+  """"""
+  actualPrice: Int
+
+  """"""
+  markupPrice: Int
+
+  """"""
+  discountedPrice: Int
+
+  """"""
+  promotedDays: Int
+}
+
+""""""
+type Microsite {
+  """"""
+  theme: String
+
+  """"""
+  projectCarousel: [CarouselItem]
+
+  """"""
+  projectHighlights: [ProjectHighlight]
+
+  """"""
+  offer: Offer
+
+  """"""
+  specialHighlight: String
+
+  """"""
+  overviewDetails: OverviewDetails
+
+  """"""
+  digitourDetails: DigitourDetails
+
+  """"""
+  carouselTag: String
+
+  """"""
+  projectDetails: Property
+
+  """"""
+  testimonials: [Testimonials]
+
+  """"""
+  paymentPlans: String
+
+  """"""
+  highlightsImage: String
+
+  """"""
+  headerLogo: String
+
+  """"""
+  aboutDeveloperLogo: String
+}
+
+""""""
+type CarouselItem {
+  """"""
+  url: String
+
+  """"""
+  title: String
+
+  """"""
+  imageUrl: String
+
+  """"""
+  description: String
+}
+
+""""""
+type ProjectHighlight {
+  """"""
+  label: String
+
+  """"""
+  value: String
+}
+
+""""""
+type Offer {
+  """"""
+  title: String
+
+  """"""
+  highlights: [String]
+}
+
+""""""
+type OverviewDetails {
+  """"""
+  images: [String]
+
+  """"""
+  title: String
+
+  """"""
+  description: String
+}
+
+""""""
+type DigitourDetails {
+  """"""
+  title: String
+
+  """"""
+  subtitle: String
+}
+
+""""""
+type Testimonials {
+  """"""
+  name: String
+
+  """"""
+  occupation: String
+
+  """"""
+  comments: String
+
+  """"""
+  image: String
+}
+
+""""""
+type CertifiedAgents {
+  """"""
+  cursor: String
+
+  """"""
+  isLastPage: Boolean
+
+  """"""
+  brokers: [User]
+}
+
+""""""
+type VideoTourSignature {
+  """"""
+  signature: String
+}
+
+""""""
+type CoLivingMicrosite {
+  """"""
+  images: [PropertyImage]
+
+  """"""
+  testimonials: [Testimonial]
+
+  """"""
+  topLocalities: [TopLocalities]
+
+  """"""
+  topProperties: [Property]
+
+  """"""
+  url: String
+
+  """"""
+  id: ID
+
+  """"""
+  amenities: [String]
+
+  """"""
+  highlights: [SeoLink]
+
+  """"""
+  brandName: String
+
+  """"""
+  name: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  logo: String
+
+  """"""
+  description: String
+
+  """"""
+  secondaryColor: String
+
+  """"""
+  primaryColor: String
+
+  """"""
+  secondaryTextColor: String
+
+  """"""
+  textColor: String
+
+  """"""
+  cities: [City]
+}
+
+""""""
+input NewsPostInput {
+  """"""
+  type: String
+
+  """"""
+  slug: String
+
+  """"""
+  page: Int
+
+  """"""
+  lang: String
+}
+
+""""""
+type NewsSnippet {
+  """"""
+  type: String
+
+  """"""
+  slug: String
+
+  """"""
+  pages: Int
+
+  """"""
+  posts: [NewsPost]
+}
+
+""""""
+type NewsPost {
+  """"""
+  title: String
+
+  """"""
+  subtitle: String
+
+  """"""
+  url: String
+
+  """"""
+  image: String
+
+  """"""
+  readTime: Int
+
+  """"""
+  updateDate: String
+
+  """"""
+  category: String
+}
+
+""""""
+type ArticleDetails {
+  """"""
+  title: String
+
+  """"""
+  author: JSON
+
+  """"""
+  update_date: String
+
+  """"""
+  read_time: Int
+
+  """"""
+  feature_image: String
+
+  """"""
+  content: String
+
+  """"""
+  tags: [tag]
+}
+
+""""""
+type tag {
+  """"""
+  name: String
+
+  """"""
+  href: String
+}
+
+""""""
+type BillboardsData {
+  """"""
+  promotedProperties: [SearchProperties]
+
+  """"""
+  promotedSellers: [SearchAgents]
+
+  """"""
+  rentBillboard: [RentBillboard]
+}
+
+""""""
+type RentBillboard {
+  """"""
+  sellerId: String
+
+  """"""
+  properties: [Property!]
+}
+
+""""""
+type Mutation {
+  """"""
+  _: Boolean
+
+  """"""
+  createRentPayOrder(tenantInformation: EdgeUserInput!, landlordInformation: EdgeUserInput!, propertyDetails: PropertyInformationInputV2!, rentInformation: RentInformationInput!, type: String!, kycRequestId: ID): PayRentPaymentResponse
+
+  """"""
+  upiDetails(upi: String!, orderType: String!): UpiDetails!
+
+  """"""
+  whatsappConsent(optWhatsapp: Boolean!): Boolean!
+
+  """"""
+  contactSupport(orderId: String, message: String!, email: String): Boolean
+
+  """"""
+  contactSupportV3(orderId: String, orderTypeId: Int, message: String!, email: String, referenceId: String): Boolean
+
+  """"""
+  createRentAgreementOrder(basicInformation: EdgeUserInput!, tenantInformation: [EdgeUserInput]!, landlordInformation: [EdgeUserInput]!, propertyDetails: PropertyInformationInput!, contractInformation: ContractInformationInput!, annexureInformation: AnnexureInformationInput, otherDetails: OtherDetailsInput, createdBy: String!, rentInformation: RentInformationInput!, entityId: String, couponCode: String, hardCopyDetails: HardCopyInput): PaymentOrderResponse
+
+  """"""
+  createRentAgreementOrderPartial(basicInformation: EdgeUserInput, createdBy: String, rentInformation: RentInformationInput, propertyDetails: PropertyInformationInputV2, tenantInformation: [EdgeUserInput], landlordInformation: [EdgeUserInput]): PaymentOrderResponse
+
+  """"""
+  updateRentAgreementOrder(basicInformation: EdgeUserInput, tenantInformation: [EdgeUserInput], landlordInformation: [EdgeUserInput], propertyDetails: PropertyInformationInput, contractInformation: ContractInformationInput, annexureInformation: AnnexureInformationInput, otherDetails: OtherDetailsInput, createdBy: String, rentInformation: RentInformationInput, entityId: String, hardCopyDetails: HardCopyInput): EdgeOrderResponse
+
+  """"""
+  updateRentAgreementHardCopyDeliveryDetails(entityId: String, hardCopyDeliveryData: HardCopyInput): ChimeraHardCopyDeliveryResponse
+
+  """"""
+  chimeraSendOtp(email: String, phone: String, otpLength: Int, countryUrlName: String): GeneralLoginResponse
+
+  """"""
+  createPackersAndMoversOrder(basicInformation: EdgeUserInput!, movingInformation: PackersAndMoversInput!, platform: String): PackersAndMoversResponse
+
+  """"""
+  estimatedValue(features: EstimationModelInput!, product: String!): EstimationResponse
+
+  """"""
+  userFeedback(feedbackInput: FeedbackInput): FeedbackResponse
+
+  """"""
+  isKYCEligible(tenantInformation: EdgeUserInput!, landlordInformation: EdgeUserInput!, propertyDetails: PropertyInformationInputV2!, rentInformation: RentInformationInput!, type: String!, timestamp: String!): KYCStatusResponse
+
+  """"""
+  validateKyc(kycInput: KycInput!): KYCStatusResponse
+
+  """"""
+  createRaPartnerSiteRequest(data: RaPartnerSiteDataInput): String
+
+  """"""
+  createSolarRooftopOrder(basicInformation: EdgeUserInput!, city: String!, cityUuid: String, houseType: String!, vendors: [String], comments: String, tncAcceptance: Boolean): SolarRooftopResponse
+
+  """"""
+  createHomeInteriorsLead(basicInformation: EdgeUserInput!, interiorsInformation: HomeInteriorsInput): HomeInterioirsLeads
+
+  """"""
+  rentReceipt(address: String!, orderId: Int!): RentReceiptResponse
+
+  """"""
+  chimeraOrderAndInitPay(user: UserInput, paymentDetail: PaymentInput, productId: Int, serviceType: String, cityUuid: String, couponCode: String): InitiatePaymentResponse
+
+  """"""
+  createPropertyManagementOrder(basicInformation: EdgeUserInput!, cityUuid: String, cityName: String, bhkConfig: String!, comments: String, tncAcceptance: Boolean, expectedRent: String, vendors: [String]): PropertyManagementResponse
+
+  """"""
+  createHomeInspectionOrder(basicInformation: EdgeUserInput!, bhkConfig: String!, cityUuid: String!, cityName: String!, tncAcceptance: Boolean, projectName: String, packages: [String]!, buildUpArea: String!, vendors: [String]!): HomeInspectionOrderResponse
+
+  """"""
+  payoutFeedback(payoutFeedbackInput: PayoutFeedbackInput): FeedbackResponse
+
+  """"""
+  chatBotQuestion(paging: PageInfoInput, filters: [TransactionFilter], chatId: ID, optionId: ID, isTransactionSelected: Boolean, userName: String): ChimeraQuestionData
+
+  """"""
+  createRentalFurnitureLead(basicInformation: EdgeUserInput!, rentalFurnitureInformation: RentalFurnitureInput!, platform: String!): CreateRentalFurnitureLeadResponse
+
+  """"""
+  createSafexpressLead(basicInformation: EdgeUserInput!, movingInformation: SafexpressInput!, platform: String): SafexpressResponse
+
+  """"""
+  whatsappConsentV2(optWhatsapp: Boolean!): Boolean!
+
+  """"""
+  createRentReceipt(receipts: JSON, pdfId: Int, entityId: Int, fileName: Int): RentReceiptResponse
+
+  """"""
+  createLead(leadInput: CreateLeadInput!): CreateLeadResponse
+
+  """"""
+  verifyLead(otp: String!, leadId: Int!, leadInput: CreateLeadInput!): VerifyLeadResponse
+
+  """"""
+  postCrfVideoTourRegistration(leadId: Int!): GeneralResponse
+
+  """"""
+  resendOtp(leadId: Int!, otpOnCall: Boolean): ResendOtpResponse
+
+  """"""
+  whatsappOptin(phone: TelephoneInput!, otp: String, isWhatsappOptin: Boolean): GeneralResponse
+
+  """"""
+  saveSearch(service: String!, category: String!, mailingOption: Int, name: String, email: String, filters: JSON, hash: String): GeneralResponse
+
+  """"""
+  removeSubscription(id: Int!): RemoveSubscriptionResponse
+
+  """"""
+  signUp(phone: TelephoneInput, profileType: String, otp: String): GeneralLoginResponse
+
+  """"""
+  sendOtp(email: String, phone: String, otpLength: Int): GeneralLoginResponse
+
+  """"""
+  updateProfile(data: JSON): GeneralLoginResponse
+
+  """"""
+  verifyOtpAndUpdateProfile(data: JSON): GeneralLoginResponse
+
+  """"""
+  logout: GeneralLoginResponse
+
+  """"""
+  createNpsLead(leadInput: CreateNpsLeadInput!): createNpsLeadResponse!
+
+  """"""
+  createPyrLead(pyrInput: CreatePyrInput!): GeneralResponse
+
+  """"""
+  requestCallback(user: UserInput): GeneralResponse
+
+  """"""
+  orderAndInitPay(user: UserInput, paymentDetail: PaymentInput, productId: Int, opportunityId: Int, serviceType: String, cityUuid: String, couponCode: String): InitiatePaymentResponse
+
+  """"""
+  postFavorite(serviceType: String!, serviceTypeObjectId: String!, action: String!, uuid: String): GeneralResponse
+
+  """"""
+  submitUserFeedbackRating(entityId: Int, entityType: String, pageUrl: String, aggregateRating: Float, ratingDetails: [FeedbackRatingDetailsInput], testimonialId: Int, testimonial: String, userCategoryId: Int, userCategory: String): userFeedbackRatingResponse
+
+  """"""
+  updateUserFeedbackRating(ratingId: Int, ratingDetails: [FeedbackRatingDetailsInput], testimonial: String, userCategoryId: Int, userCategory: String): userFeedbackRatingResponse
+
+  """"""
+  postFeedback(source: String, user: UserInput, questionList: [QuestionListInput], property: PropertyInput, npsData: NpsData, city_uuid: String, locality_uuid: String): GeneralResponse
+
+  """"""
+  reportImage(propertyId: Int, service: String, imageUrl: String, reason: String, source: String, date: String): GeneralResponse
+
+  """"""
+  reportError(service: String!, category: String!, objectId: String, sellerId: String, leadId: String, errorType: String, errorMessage: String, name: String, email: String, mobile: String, message: String): GeneralResponse
+
+  """"""
+  shortenUrl(url: String): String
+
+  """"""
+  submitLeadOnProperty(leadPropertyInput: CreateleadPropertyInput!): CreateleadPropertyResponse
+
+  """"""
+  deliverAnywayRentAgreementHardCopy(entityId: String): HardCopyDeliveryResponse
+
+  """"""
+  KYCRequirementsLead(name: String, phone_number: String, email_id: String, ga_id: String, uuid: String, bhk_preferences: String, area: Float, price_range_min: Float, price_range_max: Float, service: String, source: String): kycRequirementsLeadResponse
+
+  """"""
+  createHomeLoanLead(leadInput: JSON!): JSON
+
+  """"""
+  postQuestion(question: QuestionInput!, entity: RealEstateEntityInput!, meta: JSON): QuestionResponse
+
+  """"""
+  postAnswer(questionId: Int!, answer: String!, answererCategory: String!): QuestionResponse
+
+  """"""
+  postReview(entityId: ID, entityType: String, pageUrl: String, testimonial: String, userCategoryId: ID, ratingDetails: [RatingInput]): ReviewResponse
+
+  """"""
+  falconDeveloperSubscribe(id: ID, email: String, phone: String, name: String): String
+
+  """"""
+  postLeadById(leadInput: LeadMetaData!): CreateLeadResponse
+
+  """"""
+  unsubscribeOtp(source: String!, user: UserInput): GeneralResponse
+
+  """"""
+  unsubscribe(source: String!, user: UserInput, otp: Int, questionList: [QuestionListInput]): GeneralResponse
+
+  """"""
+  submitWeeklyPoll(questionId: Int, answerId: Int): JSON
+}
+
+""""""
+input EdgeUserInput {
+  """"""
+  name: String!
+
+  """"""
+  email: String
+
+  """"""
+  phone: String!
+
+  """"""
+  accountInformation: AccountInformationInput
+
+  """"""
+  address: String
+
+  """"""
+  parentName: String
+
+  """"""
+  id: ID
+}
+
+""""""
+input AccountInformationInput {
+  """"""
+  bankDetails: BankDetailsInput
+
+  """"""
+  accountNumber: String
+
+  """"""
+  upi: UpiDetailsInput
+
+  """"""
+  panNumber: String
+}
+
+""""""
+input BankDetailsInput {
+  """"""
+  name: String
+
+  """"""
+  branchName: String
+
+  """"""
+  address: String
+
+  """"""
+  ifscCode: String
+}
+
+""""""
+input UpiDetailsInput {
+  """"""
+  customerName: String
+
+  """"""
+  upi: String
+}
+
+""""""
+input PropertyInformationInputV2 {
+  """"""
+  address: EdgePropertyAddressInputV2
+
+  """"""
+  propertyAddress: String
+
+  """"""
+  pincode: String
+
+  """"""
+  state: String
+
+  """"""
+  city: String
+
+  """"""
+  propertyTypeId: Int
+
+  """"""
+  bhkConfig: Int
+
+  """"""
+  entity: RealEstateEntityInput
+}
+
+""""""
+input EdgePropertyAddressInputV2 {
+  """"""
+  floorNumber: Int
+
+  """"""
+  flatNumber: String
+
+  """"""
+  buildingName: String
+
+  """"""
+  locality: RealEstateEntityInput
+
+  """"""
+  pincode: String
+
+  """"""
+  city: CityInput
+
+  """"""
+  state: StateInput
+}
+
+""""""
+input StateInput {
+  """"""
+  name: String!
+
+  """"""
+  id: ID
+
+  """"""
+  code: String
+}
+
+""""""
+input RentInformationInput {
+  """"""
+  paymentModeId: Int
+
+  """"""
+  sourceId: Int
+
+  """"""
+  amount: Float!
+
+  """"""
+  convenienceFee: Float
+
+  """"""
+  rentMonth: Int
+
+  """"""
+  rentTypeId: Int
+}
+
+""""""
+type PayRentPaymentResponse {
+  """"""
+  paymentOrderResponse: PaymentOrderResponse
+
+  """"""
+  error: String
+
+  """"""
+  responseCode: String
+}
+
+""""""
+type PaymentOrderResponse {
+  """"""
+  apiKeyId: String!
+
+  """"""
+  amount: Float!
+
+  """"""
+  currency: String
+
+  """"""
+  orderId: String!
+
+  """"""
+  payerDetail: EdgeUser
+
+  """"""
+  entityId: Int!
+
+  """"""
+  error: String
+}
+
+""""""
+input PropertyInformationInput {
+  """"""
+  entity: RealEstateEntityInput
+
+  """"""
+  propertyTypeId: Int
+
+  """"""
+  bhkConfig: Int
+
+  """"""
+  address: EdgePropertyAddressInput
+}
+
+""""""
+input EdgePropertyAddressInput {
+  """"""
+  floorNumber: Int!
+
+  """"""
+  flatNumber: String!
+
+  """"""
+  buildingName: String!
+
+  """"""
+  locality: RealEstateEntityInput!
+
+  """"""
+  pincode: String!
+
+  """"""
+  city: CityInput!
+
+  """"""
+  state: StateInput!
+}
+
+""""""
+input ContractInformationInput {
+  """"""
+  agreementStartDate: DateTime!
+
+  """"""
+  monthlyRent: Float!
+
+  """"""
+  addChargesIncluded: Boolean
+
+  """"""
+  rentPaymentDay: Int!
+
+  """"""
+  securityAmount: Float!
+
+  """"""
+  noticePeriod: Int!
+
+  """"""
+  annualIncrement: Float
+}
+
+""""""
+input AnnexureInformationInput {
+  """"""
+  list: [AnnexureListInput]
+}
+
+""""""
+input AnnexureListInput {
+  """"""
+  name: String
+
+  """"""
+  quantity: Int
+}
+
+""""""
+input OtherDetailsInput {
+  """"""
+  terms: [String]
+}
+
+""""""
+input HardCopyInput {
+  """"""
+  name: String
+
+  """"""
+  address: String
+
+  """"""
+  pincode: String
+
+  """"""
+  phone: String
+
+  """"""
+  deliveryPartnerName: String
+
+  """"""
+  trackingId: String
+
+  """"""
+  status: String
+
+  """"""
+  quantity: Int
+}
+
+""""""
+type ChimeraHardCopyDeliveryResponse {
+  """"""
+  name: String
+
+  """"""
+  address: String
+
+  """"""
+  pincode: String
+
+  """"""
+  phone: String
+
+  """"""
+  status: String
+}
+
+""""""
+input PackersAndMoversInput {
+  """"""
+  relocationFrom: CityInput!
+
+  """"""
+  relocationTo: CityInput!
+
+  """"""
+  comments: String
+
+  """"""
+  tncAcceptance: Boolean
+
+  """"""
+  movementDate: DateTime!
+
+  """"""
+  bhkConfig: String!
+
+  """"""
+  vendors: [String!]!
+}
+
+""""""
+type PackersAndMoversResponse {
+  """"""
+  success: String
+
+  """"""
+  error: String
+}
+
+""""""
+input EstimationModelInput {
+  """"""
+  city: CityInput!
+
+  """"""
+  project: RealEstateEntityInput
+
+  """"""
+  locality: RealEstateEntityInput!
+
+  """"""
+  floorNumber: Int!
+
+  """"""
+  totalFloor: Int!
+
+  """"""
+  balcony: Int!
+
+  """"""
+  size: Float!
+
+  """"""
+  bedrooms: Int!
+
+  """"""
+  bathrooms: Int!
+
+  """"""
+  furnishingType: Int!
+
+  """"""
+  propertyType: String!
+
+  """"""
+  propertyAge: Int!
+
+  """"""
+  facing: String!
+
+  """"""
+  swimmingPool: Int
+
+  """"""
+  gym: Int
+
+  """"""
+  lift: Int
+
+  """"""
+  gasPipeline: Int
+
+  """"""
+  gatedCommunity: Int
+
+  """"""
+  garden: Int
+
+  """"""
+  kidsArea: Int
+
+  """"""
+  sportsFacility: Int
+}
+
+""""""
+type EstimationResponse {
+  """"""
+  value: String
+
+  """"""
+  success: Boolean
+
+  """"""
+  message: String
+
+  """"""
+  id: ID
+
+  """"""
+  steps: [StepResponse]
+
+  """"""
+  pricePosition: Int
+
+  """"""
+  actualValue: Int
+}
+
+""""""
+type StepResponse {
+  """"""
+  value: String
+
+  """"""
+  hide: Boolean
+}
+
+""""""
+input FeedbackInput {
+  """"""
+  feedbackType: Int!
+
+  """"""
+  orderType: String!
+
+  """"""
+  reason: FeedbackReason
+}
+
+""""""
+input FeedbackReason {
+  """"""
+  id: Int
+}
+
+""""""
+type KYCStatusResponse {
+  """"""
+  status: Boolean!
+
+  """"""
+  kycRequestId: ID
+
+  """"""
+  errorMsg: String
+}
+
+""""""
+input KycInput {
+  """"""
+  docType: Int!
+
+  """"""
+  docNumber: String!
+
+  """"""
+  dob: String
+
+  """"""
+  name: String
+}
+
+""""""
+input RaPartnerSiteDataInput {
+  """"""
+  name: String
+
+  """"""
+  phone: String
+
+  """"""
+  email: String
+
+  """"""
+  state: String
+
+  """"""
+  city: String
+
+  """"""
+  entityType: String
+}
+
+""""""
+type SolarRooftopResponse {
+  """"""
+  success: String
+
+  """"""
+  error: String
+}
+
+""""""
+input HomeInteriorsInput {
+  """"""
+  city: CityInput!
+
+  """"""
+  bhkConfig: String
+
+  """"""
+  posessionTimeline: String
+
+  """"""
+  scopeOfWork: String
+
+  """"""
+  comments: String
+
+  """"""
+  budget: BudgetInput
+
+  """"""
+  tncAcceptance: Boolean
+
+  """"""
+  vendors: [String]
+}
+
+""""""
+input BudgetInput {
+  """"""
+  minBudget: Int
+
+  """"""
+  maxBudget: Int
+}
+
+""""""
+type HomeInterioirsLeads {
+  """"""
+  leadId: Int
+
+  """"""
+  error: String
+}
+
+""""""
+type RentReceiptResponse {
+  """"""
+  absoluteUrl: String!
+}
+
+""""""
+input UserInput {
+  """"""
+  name: String
+
+  """"""
+  firmName: String
+
+  """"""
+  id: ID
+
+  """"""
+  email: String
+
+  """"""
+  phone: TelephoneInput
+
+  """"""
+  url: String
+
+  """"""
+  promotions: [String]
+
+  """"""
+  image: String
+
+  """"""
+  description: String
+
+  """"""
+  tags: [String]
+
+  """"""
+  type: String
+
+  """"""
+  cities: [CityInput]
+
+  """"""
+  localities: [EntityInput]
+
+  """"""
+  stats: [FeatureOrStatsInput]
+
+  """"""
+  designation: String
+
+  """"""
+  meta: JSON
+
+  """"""
+  isPrime: Boolean
+}
+
+""""""
+input FeatureOrStatsInput {
+  """"""
+  id: String
+
+  """"""
+  label: String
+
+  """"""
+  description: String
+
+  """"""
+  meta: JSON
+}
+
+""""""
+input PaymentInput {
+  """"""
+  amount: Int
+
+  """"""
+  paymentModeId: ID
+
+  """"""
+  sourceId: ID
+}
+
+""""""
+type InitiatePaymentResponse {
+  """"""
+  apiKeyId: ID
+
+  """"""
+  amount: Int
+
+  """"""
+  currency: String
+
+  """"""
+  rpOrderId: ID
+
+  """"""
+  orderId: ID
+
+  """"""
+  payer: User
+
+  """"""
+  entityId: ID
+
+  """"""
+  errors: JSON
+}
+
+""""""
+type PropertyManagementResponse {
+  """"""
+  success: String
+
+  """"""
+  error: String
+}
+
+""""""
+type HomeInspectionOrderResponse {
+  """"""
+  success: String
+
+  """"""
+  error: String
+}
+
+""""""
+input PayoutFeedbackInput {
+  """"""
+  feedbackType: Int!
+
+  """"""
+  orderType: String!
+
+  """"""
+  rating: Int
+
+  """"""
+  reason: [PayoutFeedbackReason]
+
+  """"""
+  orderId: ID
+}
+
+""""""
+input PayoutFeedbackReason {
+  """"""
+  id: Int
+
+  """"""
+  name: String
+
+  """"""
+  type: String
+
+  """"""
+  option_text: String
+
+  """"""
+  sub_option_id: [FeedbackSubOption]
+}
+
+""""""
+input FeedbackSubOption {
+  """"""
+  id: Int
+
+  """"""
+  name: String
+}
+
+""""""
+type ChimeraQuestionData {
+  """"""
+  chatId: ID
+
+  """"""
+  question: String
+
+  """"""
+  hasTransactionsAsOptions: Boolean
+
+  """"""
+  options: [OptionData]
+
+  """"""
+  optionsConfig: OptionsConfig
+}
+
+""""""
+type OptionData {
+  """"""
+  id: ID
+
+  """"""
+  label: String
+
+  """"""
+  orderId: ID
+
+  """"""
+  landlordName: String
+
+  """"""
+  transactionId: ID
+
+  """"""
+  amount: Float
+
+  """"""
+  status: String
+
+  """"""
+  statusId: Int
+
+  """"""
+  date: DateTime
+
+  """"""
+  optionActionType: String
+
+  """"""
+  responseMessages: [ResponseMessage]
+}
+
+""""""
+type ResponseMessage {
+  """"""
+  responseText: String
+
+  """"""
+  displayOrder: Int
+}
+
+""""""
+type OptionsConfig {
+  """"""
+  optionsViewType: String
+
+  """"""
+  total: Int!
+}
+
+""""""
+input RentalFurnitureInput {
+  """"""
+  city: CityInput!
+
+  """"""
+  comments: String
+
+  """"""
+  tncAcceptance: Boolean
+
+  """"""
+  houseType: String!
+
+  """"""
+  scopeOfWork: String!
+
+  """"""
+  vendors: [String]!
+}
+
+""""""
+type CreateRentalFurnitureLeadResponse {
+  """"""
+  success: String
+
+  """"""
+  error: String
+}
+
+""""""
+input SafexpressInput {
+  """"""
+  relocationFrom: CityInput!
+
+  """"""
+  relocationTo: CityInput!
+
+  """"""
+  comments: String
+
+  """"""
+  tncAcceptance: Boolean
+
+  """"""
+  movementDate: DateTime!
+
+  """"""
+  noOfCartoons: String!
+
+  """"""
+  noOfSuitcases: String!
+
+  """"""
+  vendorIds: [Int!]!
+}
+
+""""""
+type SafexpressResponse {
+  """"""
+  success: String
+
+  """"""
+  error: String
+}
+
+""""""
+type CreateLeadResponse {
+  """"""
+  whatsappStatus: String
+
+  """"""
+  sellers: [User]
+
+  """"""
+  leadId: Int
+
+  """"""
+  requestId: Int
+
+  """"""
+  isBlockedLead: Boolean
+
+  """"""
+  isFakeLead: Boolean
+
+  """"""
+  askOtp: Boolean
+
+  """"""
+  status: Int
+
+  """"""
+  isVirtualNumber: Boolean
+
+  """"""
+  errors: JSON
+
+  """"""
+  skipDemandUserSms: Boolean @deprecated(reason: "Field not used anymore remove this once code is in all apps")
+}
+
+""""""
+type VerifyLeadResponse {
+  """"""
+  leadId: Int
+
+  """"""
+  requestId: Int
+
+  """"""
+  isBlockedLead: Boolean
+
+  """"""
+  isFakeLead: Boolean
+
+  """"""
+  isVirtualNumber: Boolean
+
+  """"""
+  sellers: [User]
+
+  """"""
+  errors: JSON
+
+  """"""
+  status: Int
+
+  """"""
+  loginUser: LoginUser
+}
+
+""""""
+type ResendOtpResponse {
+  """"""
+  errors: JSON
+
+  """"""
+  status: Int
+}
+
+""""""
+type RemoveSubscriptionResponse {
+  """"""
+  message: String!
+
+  """"""
+  result: String!
+}
+
+""""""
+input CreateNpsLeadInput {
+  """"""
+  rating: Int
+
+  """"""
+  feedback: String
+
+  """"""
+  intent: String
+
+  """"""
+  phone: String
+
+  """"""
+  email: String
+
+  """"""
+  npsScore: Int
+}
+
+""""""
+type createNpsLeadResponse {
+  """"""
+  message: String!
+
+  """"""
+  status: Int!
+}
+
+""""""
+input CreatePyrInput {
+  """"""
+  name: String
+
+  """"""
+  phone: TelephoneInput
+
+  """"""
+  email: String
+
+  """"""
+  location: String
+
+  """"""
+  bhk: String
+
+  """"""
+  propertyType: String
+
+  """"""
+  budget: String
+
+  """"""
+  product: String
+
+  """"""
+  statusOrListed: String
+}
+
+""""""
+input FeedbackRatingDetailsInput {
+  """"""
+  id: Int
+
+  """"""
+  label: String
+
+  """"""
+  rating: Int
+
+  """"""
+  pills: [FeedbackRatingPillInput]
+}
+
+""""""
+input FeedbackRatingPillInput {
+  """"""
+  id: Int
+
+  """"""
+  label: String
+
+  """"""
+  rangeStart: Int
+
+  """"""
+  rangeEnd: Int
+}
+
+""""""
+type userFeedbackRatingResponse {
+  """"""
+  success: Boolean
+
+  """"""
+  message: String
+
+  """"""
+  data: FeedbackRating
+}
+
+""""""
+input QuestionListInput {
+  """"""
+  question: QuestionOptionsInput
+
+  """"""
+  options: [QuestionOptionsInput]
+}
+
+""""""
+input QuestionOptionsInput {
+  """"""
+  id: Int
+
+  """"""
+  value: String
+
+  """"""
+  text: String
+}
+
+""""""
+input PropertyInput {
+  """"""
+  service: String
+
+  """"""
+  profileType: String
+
+  """"""
+  propertyId: ID
+
+  """"""
+  sellerId: String
+}
+
+""""""
+input NpsData {
+  """"""
+  rating: String
+
+  """"""
+  type: String
+
+  """"""
+  page: String
+
+  """"""
+  customDimension: CustomDimension
+}
+
+""""""
+input CustomDimension {
+  """"""
+  uuid: String
+}
+
+""""""
+input CreateleadPropertyInput {
+  """"""
+  propertyId: Int
+
+  """"""
+  apartmentIds: String
+
+  """"""
+  propertyType: String
+
+  """"""
+  encryptedInfo: String
+
+  """"""
+  utmParams: JSON
+
+  """"""
+  loginAuthToken: String
+}
+
+""""""
+type CreateleadPropertyResponse {
+  """"""
+  success: Boolean!
+
+  """"""
+  sellerData: SellerData
+
+  """"""
+  property: Property
+
+  """"""
+  leadPropertyConfigs: String
+
+  """"""
+  inventoryCanonicalUrl: String
+}
+
+""""""
+type SellerData {
+  """"""
+  sellers: [User]
+
+  """"""
+  isVirtualNumber: Boolean
+}
+
+""""""
+type HardCopyDeliveryResponse {
+  """"""
+  hardCopyDeliveryStatus: String
+}
+
+""""""
+type kycRequirementsLeadResponse {
+  """"""
+  success: Boolean
+
+  """"""
+  message: String
+}
+
+""""""
+input QuestionInput {
+  """"""
+  tagInfo: [TagInput]!
+
+  """"""
+  question: String!
+}
+
+""""""
+input TagInput {
+  """"""
+  tagId: Int
+
+  """"""
+  tagRemarks: String
+}
+
+""""""
+type QuestionResponse {
+  """"""
+  success: Boolean
+
+  """"""
+  message: String
+}
+
+""""""
+input RatingInput {
+  """"""
+  ratingTypeId: ID
+
+  """"""
+  rating: Int
+
+  """"""
+  ratingTypePillIds: [Int]
+}
+
+""""""
+type ReviewResponse {
+  """"""
+  success: Boolean
+
+  """"""
+  message: String
+}
+
+""""""
+type Subscription {
+  """"""
+  _: Boolean
+}
+
+""""""
+enum PageTypes {
+  """"""
+  HOME
+
+  """"""
+  SEARCH
+}
+
+""""""
+enum AreaUnit {
+  """"""
+  FKT
+
+  """"""
+  YDK
+}
+
+""""""
+type RaPartnerSiteData {
+  """"""
+  name: String
+
+  """"""
+  phone: String
+
+  """"""
+  email: String
+
+  """"""
+  state: String
+
+  """"""
+  city: String
+
+  """"""
+  entityType: String
+}
+
+""""""
+input UrlShortener {
+  """"""
+  url: String
+}
+
+""""""
+input UserLookAlikeProperties {
+  """"""
+  listingId: String
+
+  """"""
+  propertyType: String
+}
+
+""""""
+input LeadSms {
+  """"""
+  leadId: Int!
+}
+
+""""""
+type Project {
+  """"""
+  id: Int
+}
+
+""""""
+type PopularProjects {
+  """"""
+  key: String
+
+  """"""
+  data: [Property]
+}
+
+""""""
+type NameandLogo {
+  """"""
+  label: String
+
+  """"""
+  logo: String
+}
+
+""""""
+input ArticleInput {
+  """"""
+  id: Int
+}
+
+""""""
+input InputRange {
+  """"""
+  min: Float
+
+  """"""
+  max: Float
+}
+
+""""""
+enum CacheControlScope {
+  """"""
+  PUBLIC
+
+  """"""
+  PRIVATE
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
