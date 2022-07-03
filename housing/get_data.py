@@ -54,15 +54,15 @@ def convert_properties_to_schema(housing_properties):
         details.append(str(property["url"]))
         details.append(str(property["listingId"]))
         details.append(str(property["originalListingId"]))
-        if property["propertyInformation"]["bedrooms"] != None:
+        if property["propertyInformation"]["bedrooms"] not in ["", None]:
             details.append(str(property["propertyInformation"]["bedrooms"]))
         else:
             details.append(None)
-        if property["propertyInformation"]["bathrooms"] != None:
+        if property["propertyInformation"]["bathrooms"] not in ["", None]:
             details.append(str(property["propertyInformation"]["bathrooms"]))
         else:
             details.append(None)
-        if property["propertyInformation"]["parking"] != None:
+        if property["propertyInformation"]["parking"] not in ["", None]:
             details.append(str(property["propertyInformation"]["parking"]))
         else:
             details.append(None)
@@ -81,8 +81,8 @@ def save_properties_to_db(housing_properties):
     while True:
         try:
             conn = psycopg2.connect(
-                host="localhost",
-                database="zerodha_data",
+                host="postgres",
+                database="housing",
                 user="postgres",
                 password="password",
             )
@@ -107,8 +107,8 @@ def save_properties_to_db(housing_properties):
         "INSERT INTO properties VALUES "
         + args
         + """ ON CONFLICT ON CONSTRAINT property_listing
-        DO UPDATE
-        SET (title,subtitle,is_active_property,display_price,display_value,url,listing_id,original_listing_id,bedrooms,bathrooms,parking,area,price,built_up_area_value,built_up_area_unit,emi) = (EXCLUDED.title,EXCLUDED.subtitle,EXCLUDED.is_active_property,EXCLUDED.display_price,EXCLUDED.display_value,EXCLUDED.url,EXCLUDED.listing_id,EXCLUDED.original_listing_id,EXCLUDED.bedrooms,EXCLUDED.bathrooms,EXCLUDED.parking,EXCLUDED.area,EXCLUDED.price,EXCLUDED.built_up_area_value,EXCLUDED.built_up_area_unit,EXCLUDED.emi);"""
+        DO NOTHING"""
+        # SET (title,subtitle,is_active_property,display_price,display_value,url,listing_id,original_listing_id,bedrooms,bathrooms,parking,area,price,built_up_area_value,built_up_area_unit,emi) = (EXCLUDED.title,EXCLUDED.subtitle,EXCLUDED.is_active_property,EXCLUDED.display_price,EXCLUDED.display_value,EXCLUDED.url,EXCLUDED.listing_id,EXCLUDED.original_listing_id,EXCLUDED.bedrooms,EXCLUDED.bathrooms,EXCLUDED.parking,EXCLUDED.area,EXCLUDED.price,EXCLUDED.built_up_area_value,EXCLUDED.built_up_area_unit,EXCLUDED.emi);"""
     )
 
     conn.close()
@@ -143,6 +143,8 @@ def main():
         housing_properties = response_json["data"]["searchResults"]["properties"]
 
         save_properties_to_db(housing_properties)
+
+        cursor = response_json["data"]["searchResults"]["meta"]["api"]["cursor"]
 
         print("Page number {} completed.".format(page_number))
 
