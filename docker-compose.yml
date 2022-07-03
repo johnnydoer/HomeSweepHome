@@ -2,9 +2,9 @@ version: "3.8"
 services:
   housing:
     build: ./housing
-    depends_on:
-      dbgate:
-        condition: service_started
+    # depends_on:
+    #   dbgate:
+    #     condition: service_started
 
   postgres:
     build: ./db

@@ -71,9 +71,8 @@ def convert_properties_to_schema(housing_properties):
         details.append(str(property["builtUpArea"]["value"]))
         details.append(str(property["builtUpArea"]["unit"]))
         details.append(str(property["emi"]))
-        # details.append(str(property["description"]["overviewDescription"]))
 
-        pprint(details)
+        # pprint(details)
         schema_properties.append(tuple(details))
 
     return schema_properties
@@ -83,8 +82,8 @@ def save_properties_to_db(housing_properties):
     while True:
         try:
             conn = psycopg2.connect(
-                host="localhost",
-                database="zerodha_data",
+                host="postgres",
+                database="housing",
                 user="postgres",
                 password="password",
             )
