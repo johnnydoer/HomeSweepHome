@@ -1,8 +1,11 @@
 import requests
 import json
 from pprint import pprint
+from time import sleep
 
 from headers import headers
+
+import psycopg2
 
 
 def post_request_body(filename: str):
@@ -39,8 +42,76 @@ def get_housing_data(URL: str, request_json):
     return server_response.json()
 
 
+def convert_properties_to_schema(housing_properties):
+    schema_properties = []
+    for property in housing_properties:
+        details = []
+        details.append(str(property["title"]))
+        details.append(str(property["subtitle"]))
+        details.append(str(property["isActiveProperty"]))
+        details.append(str(property["displayPrice"]["value"][0]))
+        details.append(str(property["displayPrice"]["displayValue"]))
+        details.append(str(property["url"]))
+        details.append(str(property["listingId"]))
+        details.append(str(property["originalListingId"]))
+        if property["propertyInformation"]["bedrooms"] != None:
+            details.append(str(property["propertyInformation"]["bedrooms"]))
+        else:
+            details.append("0")
+        if property["propertyInformation"]["bathrooms"] != None:
+            details.append(str(property["propertyInformation"]["bathrooms"]))
+        else:
+            details.append("0")
+        if property["propertyInformation"]["parking"] != None:
+            details.append(str(property["propertyInformation"]["parking"]))
+        else:
+            details.append("0")
+        details.append(str(property["propertyInformation"]["area"]))
+        details.append(str(property["propertyInformation"]["price"]))
+        details.append(str(property["builtUpArea"]["value"]))
+        details.append(str(property["builtUpArea"]["unit"]))
+        details.append(str(property["emi"]))
+        # details.append(str(property["description"]["overviewDescription"]))
+
+        pprint(details)
+        schema_properties.append(tuple(details))
+
+    return schema_properties
+
+
 def save_properties_to_db(housing_properties):
-    pass
+    while True:
+        try:
+            conn = psycopg2.connect(
+                host="localhost",
+                database="zerodha_data",
+                user="postgres",
+                password="password",
+            )
+            break
+        except psycopg2.OperationalError:
+            sleep(2)
+            print("Connection to DB failed.")
+
+    conn.autocommit = True
+    cur = conn.cursor()
+
+    schema_housing_properties = convert_properties_to_schema(housing_properties)
+
+    args = ",".join(
+        cur.mogrify("(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", a).decode(
+            "utf-8"
+        )
+        for a in schema_housing_properties
+    )
+
+    cur.execute(
+        "INSERT INTO properties VALUES "
+        + args
+        + " ON CONFLICT ON CONSTRAINT property_listing DO NOTHING;"
+    )
+
+    conn.close()
 
 
 def main():
