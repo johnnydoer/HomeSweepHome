@@ -57,22 +57,21 @@ def convert_properties_to_schema(housing_properties):
         if property["propertyInformation"]["bedrooms"] != None:
             details.append(str(property["propertyInformation"]["bedrooms"]))
         else:
-            details.append("0")
+            details.append(None)
         if property["propertyInformation"]["bathrooms"] != None:
             details.append(str(property["propertyInformation"]["bathrooms"]))
         else:
-            details.append("0")
+            details.append(None)
         if property["propertyInformation"]["parking"] != None:
             details.append(str(property["propertyInformation"]["parking"]))
         else:
-            details.append("0")
+            details.append(None)
         details.append(str(property["propertyInformation"]["area"]))
         details.append(str(property["propertyInformation"]["price"]))
         details.append(str(property["builtUpArea"]["value"]))
         details.append(str(property["builtUpArea"]["unit"]))
         details.append(str(property["emi"]))
 
-        # pprint(details)
         schema_properties.append(tuple(details))
 
     return schema_properties
@@ -82,8 +81,8 @@ def save_properties_to_db(housing_properties):
     while True:
         try:
             conn = psycopg2.connect(
-                host="postgres",
-                database="housing",
+                host="localhost",
+                database="zerodha_data",
                 user="postgres",
                 password="password",
             )
@@ -107,7 +106,9 @@ def save_properties_to_db(housing_properties):
     cur.execute(
         "INSERT INTO properties VALUES "
         + args
-        + " ON CONFLICT ON CONSTRAINT property_listing DO NOTHING;"
+        + """ ON CONFLICT ON CONSTRAINT property_listing
+        DO UPDATE
+        SET (title,subtitle,is_active_property,display_price,display_value,url,listing_id,original_listing_id,bedrooms,bathrooms,parking,area,price,built_up_area_value,built_up_area_unit,emi) = (EXCLUDED.title,EXCLUDED.subtitle,EXCLUDED.is_active_property,EXCLUDED.display_price,EXCLUDED.display_value,EXCLUDED.url,EXCLUDED.listing_id,EXCLUDED.original_listing_id,EXCLUDED.bedrooms,EXCLUDED.bathrooms,EXCLUDED.parking,EXCLUDED.area,EXCLUDED.price,EXCLUDED.built_up_area_value,EXCLUDED.built_up_area_unit,EXCLUDED.emi);"""
     )
 
     conn.close()
@@ -125,14 +126,27 @@ def main():
 
     cursor = response_json["data"]["searchResults"]["meta"]["api"]["cursor"]
 
-    request_json = post_request_with_cursor_body("post_with_cursor.json", 20, cursor)
+    page_number = 1
 
-    response_json = get_housing_data(URL, request_json)
+    while True:
 
-    housing_properties = response_json["data"]["searchResults"]["properties"]
+        request_json = post_request_with_cursor_body(
+            "post_with_cursor.json", page_number, cursor
+        )
 
-    page = response_json["data"]["searchResults"]["config"]["pageInfo"]
-    pprint(page)
+        response_json = get_housing_data(URL, request_json)
+
+        # pprint(response_json)
+        if "errors" in response_json:
+            break
+
+        housing_properties = response_json["data"]["searchResults"]["properties"]
+
+        save_properties_to_db(housing_properties)
+
+        print("Page number {} completed.".format(page_number))
+
+        page_number = page_number + 1
 
 
 if __name__ == "__main__":
