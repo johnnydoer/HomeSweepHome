@@ -7,6 +7,8 @@
     url VARCHAR(550) NULL,
     listing_id INT NOT NULL,
     original_listing_id INT NULL,
+    latitutde DOUBLE PRECISION NOT NULL,
+    longitude DOUBLE PRECISION NOT NULL,
     bedrooms INT NULL,
     bathrooms INT NULL,
     parking INT NULL,
