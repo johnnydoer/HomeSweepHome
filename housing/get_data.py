@@ -54,33 +54,41 @@ def convert_properties_to_schema(housing_properties):
     schema_properties = []
     for property in housing_properties:
         details = []
-        details.append(str(property["title"]))
-        details.append(str(property["subtitle"]))
-        details.append(str(property["isActiveProperty"]))
-        details.append(str(property["displayPrice"]["value"][0]))
-        details.append(str(property["displayPrice"]["displayValue"]))
-        details.append(str(property["url"]))
-        details.append(str(property["listingId"]))
-        details.append(str(property["originalListingId"]))
-        details.append(str(property["coords"][0]))
-        details.append(str(property["coords"][1]))
-        if property["propertyInformation"]["bedrooms"] not in ["", None]:
-            details.append(str(property["propertyInformation"]["bedrooms"]))
-        else:
-            details.append(None)
-        if property["propertyInformation"]["bathrooms"] not in ["", None]:
-            details.append(str(property["propertyInformation"]["bathrooms"]))
-        else:
-            details.append(None)
-        if property["propertyInformation"]["parking"] not in ["", None]:
-            details.append(str(property["propertyInformation"]["parking"]))
-        else:
-            details.append(None)
-        details.append(str(property["propertyInformation"]["area"]))
-        details.append(str(property["propertyInformation"]["price"]))
-        details.append(str(property["builtUpArea"]["value"]))
-        details.append(str(property["builtUpArea"]["unit"]))
-        details.append(str(property["emi"]))
+        try:
+            details.append(str(property["title"]))
+            details.append(str(property["subtitle"]))
+            details.append(str(property["isActiveProperty"]))
+            if type(property["displayPrice"]["value"]) == list:
+                details.append(str(property["displayPrice"]["value"][0]))
+            else:
+                details.append(str(property["displayPrice"]["value"]))
+            details.append(str(property["displayPrice"]["displayValue"]))
+            details.append(str(property["url"]))
+            details.append(str(property["listingId"]))
+            details.append(str(property["originalListingId"]))
+            details.append(str(property["coords"][0]))
+            details.append(str(property["coords"][1]))
+            if property["propertyInformation"]["bedrooms"] not in ["", None]:
+                details.append(str(property["propertyInformation"]["bedrooms"]))
+            else:
+                details.append(None)
+            if property["propertyInformation"]["bathrooms"] not in ["", None]:
+                details.append(str(property["propertyInformation"]["bathrooms"]))
+            else:
+                details.append(None)
+            if property["propertyInformation"]["parking"] not in ["", None]:
+                details.append(str(property["propertyInformation"]["parking"]))
+            else:
+                details.append(None)
+            details.append(str(property["propertyInformation"]["area"]))
+            details.append(str(property["propertyInformation"]["price"]))
+            details.append(str(property["builtUpArea"]["value"]))
+            details.append(str(property["builtUpArea"]["unit"]))
+            details.append(str(property["emi"]))
+        except Exception as e:
+            # pprint(e)
+            # pprint(property)
+            continue
 
         schema_properties.append(tuple(details))
 
@@ -174,9 +182,9 @@ def main():
 
             page_number = page_number + 1
 
-            # DEBUG:
-            if page_number == 10:
-                break
+            # # DEBUG:
+            # if page_number == 10:
+            #     break
         except Exception as e:
             pprint(e)
             break

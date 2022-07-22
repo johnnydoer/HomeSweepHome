@@ -2,15 +2,15 @@ version: "3.8"
 services:
   housing:
     build: ./housing
-    # depends_on:
-    #   dbgate:
-    #     condition: service_started
+    depends_on:
+      postgres:
+        condition: service_started
 
   postgres:
     build: ./db
     # image: postgres
     volumes:
-      # - ./db/data:/var/lib/postgresql/data
+      # - ./db/data/sql:/var/lib/postgresql/data
       - postgres-data:/var/lib/postgresql/data
       # - ./db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
     ports:
@@ -33,4 +33,3 @@ services:
 volumes:
   dbgate-data:
   postgres-data:
-  

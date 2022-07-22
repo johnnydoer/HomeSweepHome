@@ -8,4 +8,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+RUN chmod +x headers.sh
+
+RUN bash ./headers.sh
+
 CMD python get_data.py
