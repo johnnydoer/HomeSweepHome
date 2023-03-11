@@ -1,9 +1,9 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/JohnnyDoer/Housing"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png" alt="Markdownify" width="200"></a>
+  <a href="https://github.com/JohnnyDoer/Housing"><img src="https://raw.githubusercontent.com/JohnnyDoer/HomeSweepHome/main/app/logo.png" alt="HomeSweepHome" width="200"></a>
   <br>
-  Housing
+  HomeSweepHome
   <br>
 </h1>
 
@@ -28,14 +28,13 @@
   <a href="#license">License</a>
 </p>
 
-<!-- ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif) -->
+![]()
 
 ## Key Features
 
 * Complete containerization.
 * Browser based SQL client in Docker container.
   - No need to install any SQL clients for viewing of data.
-* 
 
 ## How To Use
 

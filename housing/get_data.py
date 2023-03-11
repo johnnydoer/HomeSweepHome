@@ -1,11 +1,17 @@
 import requests
 import json
+import multitasking
+import signal
 from pprint import pprint
 from time import sleep
+
 
 from headers import headers
 
 import psycopg2
+
+
+signal.signal(signal.SIGINT, multitasking.killall)
 
 # 1st request body for Housing GraphQL.
 def post_request_body(filename: str):
@@ -34,7 +40,7 @@ def set_request_variables(json_data, page_number: int, cursor: str):
         json_data["variables"]
     )  # Load body `variables` as JSON,
     body_variables["pageInfo"]["page"] = page_number  # Change page number.
-    body_variables["meta"]["api"]["cursor"] = cursor  # Change cursor.
+    body_variables["meta"]["api"]["cursor"] = cursor  # Change cur
 
     json_data["variables"] = json.dumps(
         body_variables
@@ -57,25 +63,47 @@ def convert_properties_to_schema(housing_properties):
         try:
             details.append(str(property["title"]))
             details.append(str(property["subtitle"]))
-            details.append(str(property["isActiveProperty"]))
+            if property["isActiveProperty"] not in ["", None]:
+                details.append(str(property["isActiveProperty"]))
+            else:
+                details.append(None)
+
             if type(property["displayPrice"]["value"]) == list:
-                details.append(str(property["displayPrice"]["value"][0]))
+                if "." in str(property["displayPrice"]["value"][0]):
+                    details.append(
+                        str(property["displayPrice"]["value"][0].split(".")[0])
+                    )
+                else:
+                    details.append(str(property["displayPrice"]["value"][0]))
             else:
                 details.append(str(property["displayPrice"]["value"]))
-            details.append(str(property["displayPrice"]["displayValue"]))
+
+            if property["displayPrice"]["displayValue"] not in ["", None]:
+                details.append(str(property["displayPrice"]["displayValue"]))
+            else:
+                details.append(None)
+
             details.append(str(property["url"]))
             details.append(str(property["listingId"]))
-            details.append(str(property["originalListingId"]))
+
+            if property["originalListingId"] not in ["", None]:
+                details.append(str(property["originalListingId"]))
+            else:
+                details.append(None)
+
             details.append(str(property["coords"][0]))
             details.append(str(property["coords"][1]))
+
             if property["propertyInformation"]["bedrooms"] not in ["", None]:
                 details.append(str(property["propertyInformation"]["bedrooms"]))
             else:
                 details.append(None)
+
             if property["propertyInformation"]["bathrooms"] not in ["", None]:
                 details.append(str(property["propertyInformation"]["bathrooms"]))
             else:
                 details.append(None)
+
             if property["propertyInformation"]["parking"] not in ["", None]:
                 details.append(str(property["propertyInformation"]["parking"]))
             else:
@@ -132,7 +160,7 @@ def save_properties_to_db(housing_properties):
 
     conn.close()  # Always close connections. :)
 
-
+@multitasking.task
 def main():
     # TODO: Add the below to a function.
 
@@ -182,13 +210,15 @@ def main():
 
             page_number = page_number + 1
 
-            # # DEBUG:
-            # if page_number == 10:
-            #     break
+            # DEBUG: Break mechanism to start EDA.
+            if page_number == 100:
+                break
+
         except Exception as e:
             pprint(e)
             break
-
+    
+    # TODO: Add functionality to export database data to CSV format.
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,307 @@
+{
+    "data": {
+        "nearbyProperties": [
+            {
+                "minDistanceLocality": null,
+                "url": "/in/buy/projects/page/253358-dlf-one-midtown-by-dlf-in-karampura",
+                "coverImage": {
+                    "src": "https://is1-3.housingcdn.com/4f2250e8/bcd820099636d8ca4c65bc0f98389733/v0/version/dlf_one_midtown-karampura-delhi-dlf.jpeg",
+                    "alt": "Gallery Cover Pic of DLF One Midtown",
+                    "tag": null
+                },
+                "title": "DLF One Midtown",
+                "subtitle": "3, 4 BHK Apartments",
+                "address": {
+                    "address": "Karampura, West Delhi, New Delhi",
+                    "url": null,
+                    "subAddress": null,
+                    "distanceFromEntity": null
+                },
+                "polygonsHash": {
+                    "h_district": {
+                        "url_name": null,
+                        "name": null,
+                        "display_name": null,
+                        "uuid": null
+                    },
+                    "city": {
+                        "url_name": "new_delhi",
+                        "name": "New Delhi",
+                        "display_name": [
+                            "New Delhi",
+                            "India"
+                        ],
+                        "uuid": "f97f947ffae6408ac295"
+                    },
+                    "neighbourhood": {
+                        "url_name": null,
+                        "name": null,
+                        "display_name": null,
+                        "uuid": null
+                    },
+                    "housing_region": {
+                        "url_name": "delhi_west",
+                        "name": "West Delhi",
+                        "display_name": [
+                            "Delhi West",
+                            "New Delhi"
+                        ],
+                        "uuid": "a1cb64daa0e8e4b7eca0"
+                    },
+                    "locality": {
+                        "url_name": "karampura",
+                        "name": "Karampura",
+                        "display_name": [
+                            "Karampura",
+                            "New Delhi"
+                        ],
+                        "uuid": "b2f50c106e5b731be41c"
+                    },
+                    "sublocality": {
+                        "url_name": "karampura_industrial_area",
+                        "name": "Karampura Industrial Area",
+                        "display_name": [
+                            "Karampura Industrial Area",
+                            "Karampura",
+                            "New Delhi"
+                        ],
+                        "uuid": "9c5126dc3ca04ad5bc7d"
+                    },
+                    "state": {
+                        "url_name": null,
+                        "name": null,
+                        "display_name": null,
+                        "uuid": null
+                    },
+                    "region": {
+                        "url_name": null,
+                        "name": null,
+                        "display_name": null,
+                        "uuid": null
+                    },
+                    "housing_state": {
+                        "url_name": null,
+                        "name": null,
+                        "display_name": null,
+                        "uuid": null
+                    }
+                },
+                "details": {
+                    "config": {
+                        "propertyConfig": [
+                            {
+                                "key": "4",
+                                "label": "3 BHK"
+                            },
+                            {
+                                "key": "5",
+                                "label": "4 BHK"
+                            }
+                        ]
+                    }
+                },
+                "sellers": [
+                    {
+                        "name": "DLF",
+                        "id": "888ac966-ac61-4611-9424-76e7fb74f82a",
+                        "image": "https://is1-2.housingcdn.com/0b8ad14c/0928d6f506d043eedf3e01677d34c1af/v0/version.png",
+                        "url": "/buy-projects-by-dlf-bid-22736574-Abzjgijrl7pi261f04ufqzirsa",
+                        "type": "Developer",
+                        "designation": "Developer",
+                        "isPrime": false,
+                        "isPaid": true,
+                        "sellerTag": null,
+                        "phone": {
+                            "partialValue": "79054....."
+                        },
+                        "isCertifiedAgent": null
+                    },
+                    {
+                        "name": "STAR ESTATE",
+                        "id": "0ffc62d5-891e-46cb-83e4-a9bd511c4d73",
+                        "image": "https://is1-2.housingcdn.com/fb15c03b/e454a7e8dbb9d30b935bc748462926ba/v0/version.jpg",
+                        "url": "/buy-property-by-star-estate-aid-754061-A1eiu5lb6892p3hpg2jq9wnkvn",
+                        "type": "Seller",
+                        "designation": "Seller",
+                        "isPrime": false,
+                        "isPaid": true,
+                        "sellerTag": null,
+                        "phone": {
+                            "partialValue": "70884....."
+                        },
+                        "isCertifiedAgent": null
+                    }
+                ],
+                "brands": [
+                    {
+                        "id": "888ac966-ac61-4611-9424-76e7fb74f82a",
+                        "name": "DLF",
+                        "url": "/buy-projects-by-dlf-bid-22736574-Abzjgijrl7pi261f04ufqzirsa",
+                        "image": "https://is1-2.housingcdn.com/0b8ad14c/0928d6f506d043eedf3e01677d34c1af/v0/version.png"
+                    }
+                ],
+                "displayPrice": {
+                    "value": [
+                        53000086.09,
+                        144601600
+                    ],
+                    "displayValue": "₹5.3 Cr - 14.46 Cr",
+                    "unit": null,
+                    "deposit": null
+                },
+                "propertyType": "project",
+                "listingId": "253358",
+                "showNewLaunch": null
+            },
+            {
+                "minDistanceLocality": null,
+                "url": "/in/buy/projects/page/270180-suncity-vatsal-valley-independent-floors-1-by-suncity-projects-in-gwal-pahari",
+                "coverImage": {
+                    "src": "https://is1-2.housingcdn.com/4f2250e8/7cb69fcf1e17b3f4779327fccef58db8/v0/version/suncity_vatsal_valley_independent_floors_1-gwal_pahari-delhi-suncity_projects.jpeg",
+                    "alt": "Gallery Cover Pic of Suncity Vatsal Valley Independent Floors 1",
+                    "tag": null
+                },
+                "title": "Suncity Vatsal Valley Independent Floors 1",
+                "subtitle": "2, 3 BHK Apartments",
+                "address": {
+                    "address": "Gwal Pahari, Gurgaon Faridabad Road, Gurgaon",
+                    "url": null,
+                    "subAddress": null,
+                    "distanceFromEntity": 24.260410785587187
+                },
+                "polygonsHash": {
+                    "h_district": {
+                        "url_name": null,
+                        "name": null,
+                        "display_name": null,
+                        "uuid": null
+                    },
+                    "city": {
+                        "url_name": "gurgaon",
+                        "name": "Gurgaon",
+                        "display_name": [
+                            "Gurugram",
+                            "Haryana"
+                        ],
+                        "uuid": "3c69d8421a77f8f8b611"
+                    },
+                    "neighbourhood": {
+                        "url_name": null,
+                        "name": null,
+                        "display_name": null,
+                        "uuid": null
+                    },
+                    "housing_region": {
+                        "url_name": "gurgaon_faridabad_road",
+                        "name": "Gurgaon Faridabad Road",
+                        "display_name": null,
+                        "uuid": "483866c58a3e88671bfe"
+                    },
+                    "locality": {
+                        "url_name": "gwal_pahari",
+                        "name": "Gwal Pahari",
+                        "display_name": [
+                            "Gwal Pahari",
+                            "Gurgaon"
+                        ],
+                        "uuid": "c2bffdb8f25e1bd8d5d5"
+                    },
+                    "sublocality": {
+                        "url_name": "valley_view_estate",
+                        "name": "Valley View Estate",
+                        "display_name": [
+                            "Valley View Estate",
+                            "Gwal Pahari",
+                            "Gurgaon"
+                        ],
+                        "uuid": "e3acdfd444d86c5655ae"
+                    },
+                    "state": {
+                        "url_name": "haryana",
+                        "name": "Haryana",
+                        "display_name": null,
+                        "uuid": "793f17ce2d8d4bfcd6f6"
+                    },
+                    "region": {
+                        "url_name": null,
+                        "name": null,
+                        "display_name": null,
+                        "uuid": null
+                    },
+                    "housing_state": {
+                        "url_name": null,
+                        "name": null,
+                        "display_name": null,
+                        "uuid": null
+                    }
+                },
+                "details": {
+                    "config": {
+                        "propertyConfig": [
+                            {
+                                "key": "3",
+                                "label": "2 BHK"
+                            },
+                            {
+                                "key": "4",
+                                "label": "3 BHK"
+                            }
+                        ]
+                    }
+                },
+                "sellers": [
+                    {
+                        "name": "STAR ESTATE",
+                        "id": "0ffc62d5-891e-46cb-83e4-a9bd511c4d73",
+                        "image": "https://is1-2.housingcdn.com/fb15c03b/e454a7e8dbb9d30b935bc748462926ba/v0/version.jpg",
+                        "url": "/buy-property-by-star-estate-aid-754061-A1eiu5lb6892p3hpg2jq9wnkvn",
+                        "type": "Seller",
+                        "designation": "Seller",
+                        "isPrime": false,
+                        "isPaid": true,
+                        "sellerTag": null,
+                        "phone": {
+                            "partialValue": "70884....."
+                        },
+                        "isCertifiedAgent": null
+                    },
+                    {
+                        "name": "Ascens Realty Services Pvt. Ltd. ",
+                        "id": "ec14e658-9e40-406e-be93-4f657d9ec0e3",
+                        "image": "https://is1-3.housingcdn.com/fb15c03b/835eb9de36fd8faa56d5e7cc626d3d73/v0/version.jpg",
+                        "url": "/buy-property-by-vigin-yadav-aid-22905924-Akq4uciruvy8dnn4hkmau0cijn",
+                        "type": "Seller",
+                        "designation": "Seller",
+                        "isPrime": false,
+                        "isPaid": true,
+                        "sellerTag": null,
+                        "phone": {
+                            "partialValue": "98733....."
+                        },
+                        "isCertifiedAgent": null
+                    }
+                ],
+                "brands": [
+                    {
+                        "id": "add0a3ca-8d1e-4834-bcb1-c8b2c2d9162f",
+                        "name": "Suncity Projects",
+                        "url": "/buy-projects-by-suncity-projects-bid-365070-Af9ca7hakdag6i4f0jv5g4i9tb",
+                        "image": "https://is1-2.housingcdn.com/0b8ad14c/272b73a7322a8a9075bc0b694fb7db5a/v1/version.jpg"
+                    }
+                ],
+                "displayPrice": {
+                    "value": [
+                        9849998,
+                        15168585
+                    ],
+                    "displayValue": "₹98.5 L - 1.52 Cr",
+                    "unit": null,
+                    "deposit": null
+                },
+                "propertyType": "project",
+                "listingId": "270180",
+                "showNewLaunch": null
+            }
+        ]
+    }
+}

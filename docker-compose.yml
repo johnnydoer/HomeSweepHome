@@ -12,7 +12,7 @@ services:
     volumes:
       # - ./db/data/sql:/var/lib/postgresql/data
       - postgres-data:/var/lib/postgresql/data
-      # - ./db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      # - ./db/create_tables.sqstr(property["displayPrice"]["displayValue"])l:/docker-entrypoint-initdb.d/create_tables.sql
     ports:
       - 54321:5432
     env_file:
