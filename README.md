@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/JohnnyDoer/Housing"><img src="https://raw.githubusercontent.com/JohnnyDoer/HomeSweepHome/master/app/logo.png" alt="HomeSweepHome" width="200"></a>
+  <a href="https://github.com/JohnnyDoer/Housing"><img src="https://raw.githubusercontent.com/johnnydoer/HomeSweepHome/master/assets/logo.png" alt="HomeSweepHome" width="200"></a>
   <br>
   HomeSweepHome
   <br>
@@ -28,7 +28,7 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://raw.githubusercontent.com/JohnnyDoer/HomeSweepHome/master/app/demo.gif)
+![screenshot](https://raw.githubusercontent.com/johnnydoer/HomeSweepHome/master/assets/demo.gif)
 
 ## Key Features
 
